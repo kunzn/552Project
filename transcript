@@ -1,2 +1,26 @@
 # Compile of CLA4.v was successful.
 # Compile of CLA4.v was successful.
+# Compile of Register.sv was successful.
+# Compile of Register.v was successful.
+# Compile of Add_Sub_16bit.v failed with 6 errors.
+# Compile of Add_Sub_16bit.v failed with 1 errors.
+# Compile of Add_Sub_16bit.v failed with 1 errors.
+# Compile of Add_Sub_16bit.v was successful.
+# Compile of FA.sv was successful.
+# Compile of CLA4.v was successful.
+# Compile of Register.v was successful.
+# Compile of Add_Sub_16bit.v was successful.
+# Compile of ALU.v failed with 2 errors.
+# Compile of BitCell.v was successful.
+# Compile of dff.v was successful.
+# Compile of project-phase1-testbench.v was successful.
+# Compile of PSA_16bit.v was successful.
+# Compile of ReadDecoder_4_16.v failed with 2 errors.
+# Compile of RegisterFile.v was successful.
+# Compile of Shifter.v failed with 2 errors.
+# Compile of WriteDecoder_4_16.v failed with 2 errors.
+# 13 compiles, 4 failed with 8 errors.
+# Compile of WriteDecoder_4_16.v was successful.
+# Compile of Shifter.v was successful.
+# Compile of ALU.v was successful.
+# Compile of ReadDecoder_4_16.v was successful.
