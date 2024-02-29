@@ -1,7 +1,7 @@
 module Shifter (Shift_Out, Shift_In, Shift_Val, Mode);
 input [15:0] Shift_In; // This is the input data to perform shift operation on
 input [3:0] Shift_Val; // Shift amount (used to shift the input data)
-input [1:0]Mode; // To indicate 00=SLL, 01=SRA, 10= ROR, 11=ROR 
+input [1:0] Mode; // To indicate 00=SLL, 01=SRA, 10= ROR, 11=ROR 
 output [15:0] Shift_Out; // Shifted output data
 
   wire [15:0] shift1;
