@@ -11,7 +11,7 @@ module t_adder4b;
         assign ovfl_mine = (~(stim[3] ^ stim[7]) & (stim[3] ^ S[3])); //My overflow logic, to check against the design's overflow logic
 
         // instantiate UUT
-        CLA4 addmod(.A(stim[3:0]),.B(stim[7:4]),.Ovfl(ovfl),.Sum(S), .Cin(1'b0), .Cout(Cout)); //subadd only runs for 0
+        CLA4 addmod(.A(stim[3:0]),.B(stim[7:4]),.Ovfl(ovfl),.S(S), .Cin(1'b0), .Cout(Cout)); //subadd only runs for 0
 
 // stimulus generation
         initial begin
