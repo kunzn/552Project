@@ -1,0 +1,20 @@
+
+
+module WriteDecoder_4_16(input [3:0] RegId, input WriteReg, output [15:0] Wordline);
+
+  logic [15:0] shift0;
+  logic [15:0] shift1;
+  logic [15:0] shift2;
+  logic [15:0] shift4;
+
+  assign shift0 = {{15{1'b0}}, 1'b1};
+
+  assign shift1 = RegId[0] ? shift0 << 1 : shift0;
+
+  assign shift2 = RegId[1] ? shift1 << 2 : shift1;
+
+  assign shift4 = RegId[2] ? shift2 << 4 : shift2;
+
+  assign Wordline = (WriteReg) ? (RegId[3] ? shift4 << 8 : shift4) : {16{1'b0}};
+
+endmodule
