@@ -15,9 +15,9 @@ module RED (
 
 	wire [15:0] final_SUM;
 
-  	CLA4 claFin1(.A(LSB_SUM[3:0]), .B(LSB_SUM[7:4]), .Cin(1'b0), .Sum(final_SUM[3:0]), .Ovfl(Ovfls[4]), .Cout(C[4]));
-  	CLA4 claFin2(.A(MSB_SUM[3:0]), .B(MSB_SUM[7:4]), .Cin(C[4]), .Sum(final_SUM[7:4]), .Ovfl(Ovfls[5]), .Cout(C[5]));
-	CLA4 claFin3(.A({3'b0, C[1]}), .B({3'b0, C[3]}), .Cin(C[5]), .Sum(final_SUM[15:8]), .Ovfl(Ovfls[6]), .Cout(C[6]));
+  	CLA4 claFin1(.A(LSB_SUM[3:0]), .B(MSB_SUM[3:0]), .Cin(1'b0), .Sum(final_SUM[3:0]), .Ovfl(Ovfls[4]), .Cout(C[4]));
+  	CLA4 claFin2(.A(LSB_SUM[7:4]), .B(MSB_SUM[7:4]), .Cin(C[4]), .Sum(final_SUM[7:4]), .Ovfl(Ovfls[5]), .Cout(C[5]));
+	CLA4 claFin3(.A({3'b0, C[1]}), .B({3'b0, C[3]}), .Cin(C[5]), .Sum(final_SUM[11:8]), .Ovfl(Ovfls[6]), .Cout(C[6]));
 
 	assign Sum = final_SUM[9] ? {6'b111111, final_SUM[9:0]} : {6'b000000, final_SUM[9:0]};
 endmodule

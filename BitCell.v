@@ -9,7 +9,7 @@ module BitCell(
    inout Bitline1, 
    inout Bitline2);
 
-   reg Q;
+   wire Q;
 
    dff DFF(.q(Q), .d(D), .wen(WriteEnable), .clk(clk), .rst(rst));
 

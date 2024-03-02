@@ -28,7 +28,7 @@ module RegisterFile(
         .Bitline2(bitline2)
     );
 
-    assign SrcData1 = ((SrcReg1 === DstReg) & WriteReg) ? DstData : bitline1;
-    assign SrcData2 = ((SrcReg2 === DstReg) & WriteReg) ? DstData : bitline2;
+    assign SrcData1 = bitline1;
+    assign SrcData2 = bitline2;
 
 endmodule
