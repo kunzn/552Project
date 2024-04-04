@@ -21,10 +21,16 @@ module control_signals(
   output [15:0] MemtoRegMux,
   output [15:0] PCSrcMux, 
   output [15:0] nxt_pc,
+  output BR,
   output hlt
 );
 
   reg RegWrite, ALUSrc, PCSrc, MemWrite, MemtoReg, MemRead, br, pcs, hlt_, load_byte, sw;
+
+ // dff ID_EX_Control[10:0](.q(pc), .d(PCSrcMux), .wen(1'b1), .clk(clk), .rst(~rst_n));
+  //dff EX_MEM_Control[10:0](.q(pc), .d(PCSrcMux), .wen(1'b1), .clk(clk), .rst(~rst_n));
+ // dff MEM_WB_Control[10:0](.q(pc), .d(PCSrcMux), .wen(1'b1), .clk(clk), .rst(~rst_n));
+
 
 always @(*) 
   begin
@@ -89,7 +95,6 @@ always @(*)
       sw = 1;
       end 
     4'b1010: begin// LLB
-	// Nothing happens??
       load_byte = 1;
       MemtoReg = 1;
       RegWrite = 1;
@@ -103,6 +108,7 @@ always @(*)
       PCSrc = 1;
       end 
     4'b1101: begin// BR
+      PCSrc = 1;
       br = 1;
       end 
     4'b1110: begin// PCS
@@ -120,10 +126,11 @@ always @(*)
 //reg [15:0] ALUSrcMux, MemtoRegMux, PCSrcMux; 
 assign ALUSrcMux = load_byte ? {instruction[7:0]} : ALUSrc ? {{12{operand2[3]}},operand2} : SrcData2;
 assign MemtoRegMux = pcs ? PCSrcMux : MemtoReg ? ALU_Out : data_out;
-assign PCSrcMux = hlt_ ? pc : br ? &(destination[3:1]) ? SrcData1 : |(destination[3:1] ^ F) ? nxt_pc : SrcData1 : PCSrc ? br_pc : nxt_pc;
+assign PCSrcMux = hlt_ ? pc : PCSrc ? br_pc : nxt_pc;
 assign SrcReg1 = load_byte ? destination : operand1; 
 assign SrcReg2 = sw ? destination : operand2;
 assign hlt = hlt_;
+assign BR = br;
 
 assign RegWrite2 = ~rst_n ? 1'b0 : RegWrite;
 assign MemWrite2 = ~rst_n ? 1'b0 : MemWrite;
