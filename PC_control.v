@@ -12,8 +12,8 @@ module PC_control(C, I, F, Br, rs_addr, PC_in, PC_out);
   //reg [15:0] pc_out;
   wire Ovfl;
   
-  Add_Sub_16bit adder(.A(PC_in), .B(16'h0002), .sub(1'b0), .Sum(PC_Add_Out), .Ovfl(Ovfl));
-  Add_Sub_16bit adder2(.A(PC_Add_Out), .B({{6{I[8]}}, I, 1'b0}), .sub(1'b0), .Sum(PC_Add_Out2), .Ovfl(Ovfl));
+  
+  Add_Sub_16bit adder2(.A(PC_in), .B({{6{I[8]}}, I, 1'b0}), .sub(1'b0), .Sum(PC_Add_Out2), .Ovfl(Ovfl));
 
   reg condition_met;
   always @(*) 
