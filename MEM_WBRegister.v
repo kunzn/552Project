@@ -35,3 +35,25 @@ module MEM_WBRegister(
   dff Pcs(.q(W_Pcs), .d(M_Pcs), .wen(1'b1), .clk(clk), .rst(~rst_n));
 
 endmodule
+
+/*
+
+MEM_WBRegister MEM_WB(
+  .M_Destination(M_Destination),
+  .M_MemData(M_MemData),
+  .M_ALUout(M_ALUout),
+  .M_Nxt_Pc(M_Nxt_Pc),
+  .M_hlt(M_hlt),
+  .M_MemtoReg(M_MemtoReg),
+  .M_RegWrite(M_RegWrite),
+  .M_Pcs(M_Pcs),
+  .W_Destination(W_Destination),
+  .W_MemData(W_MemData),
+  .W_ALUout(W_ALUout),
+  .W_Nxt_Pc(W_Nxt_Pc),
+  .W_hlt(W_hlt),
+  .W_MemtoReg(W_MemtoReg),
+  .W_RegWrite(W_RegWrite),
+  .W_Pcs(W_Pcs),
+);
+*/
