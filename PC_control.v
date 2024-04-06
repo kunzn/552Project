@@ -7,6 +7,7 @@ module PC_control(C, I, F, Br, rs_addr, PC_in, PC_out);
   input [15:0] rs_addr;
   input [15:0] PC_in;
   output[15:0] PC_out;
+  output cond_met;
 
   wire [15:0] PC_Add_Out , PC_Add_Out2;
   //reg [15:0] pc_out;
