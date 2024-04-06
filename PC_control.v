@@ -1,4 +1,4 @@
-module PC_control(C, I, F, Br, rs_addr, PC_in, PC_out);
+module PC_control(C, I, F, Br, rs_addr, PC_in, PC_out, cond_met);
 
   input [2:0] C; //condition
   input [8:0] I; // offset, immediate and signed
@@ -50,4 +50,5 @@ module PC_control(C, I, F, Br, rs_addr, PC_in, PC_out);
     endcase
    end
   assign PC_out = condition_met ? (Br ? rs_addr : PC_Add_Out2) : PC_Add_Out;
+  assign cond_met = condition_met;
 endmodule

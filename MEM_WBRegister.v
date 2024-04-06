@@ -1,5 +1,7 @@
 
 module MEM_WBRegister(
+  input clk,
+  input rst_n,
   input [3:0] M_Destination,
   input [15:0] M_MemData,
   input [15:0] M_ALUout,

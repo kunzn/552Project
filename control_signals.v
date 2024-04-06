@@ -1,36 +1,33 @@
 module control_signals(
-  input[3:0] opcode,
-  input[3:0] destination,
-  input[3:0] operand1, 
-  input[3:0] operand2, 
-  input[15:0] data_out, 
-  input[15:0] ALU_Out, 
-  input[15:0] SrcData1,
-  input[15:0] SrcData2,
   input[15:0] instruction,
-  input[15:0] pc,
-  input[15:0] br_pc,
-  input[2:0] F,
-  input rst_n,
-  output MemWrite2,
-  output MemRead2,
-  output RegWrite2,
-  output[3:0] SrcReg1, 
-  output[3:0] SrcReg2,
-  output [15:0] ALUSrcMux,
-  output [15:0] MemtoRegMux,
-  output [15:0] PCSrcMux, 
-  output [15:0] nxt_pc,
-  output BR,
-  output hlt
+  output RegWrite_Out, 
+  output ALUSrc_Out,
+  output PCSrc_Out,
+  output MemWrite_Out,
+  output MemtoReg_Out,
+  output MemRead_Out,
+  output br_Out,
+  output pcs_Out,
+  output hlt_Out,
+  output load_byte_Out,
+  output sw_Out
 );
-
-  reg RegWrite, ALUSrc, PCSrc, MemWrite, MemtoReg, MemRead, br, pcs, hlt_, load_byte, sw;
-
- // dff ID_EX_Control[10:0](.q(pc), .d(PCSrcMux), .wen(1'b1), .clk(clk), .rst(~rst_n));
-  //dff EX_MEM_Control[10:0](.q(pc), .d(PCSrcMux), .wen(1'b1), .clk(clk), .rst(~rst_n));
- // dff MEM_WB_Control[10:0](.q(pc), .d(PCSrcMux), .wen(1'b1), .clk(clk), .rst(~rst_n));
-
+  //control signals
+  reg RegWrite, ALUSrc, PCSrc, MemWrite, MemtoReg, MemRead, br, pcs, hlt, load_byte, sw;
+  
+  assign RegWrite_Out = RegWrite; 
+  assign ALUSrc_Out = ALUSrc;
+  assign PCSrc_Out = PCSrc;
+  assign MemWrite_Out = MemWrite;
+  assign MemtoReg_Out = MemtoReg;
+  assign MemRead_Out = MemRead;
+  assign br_Out = br;
+  assign pcs_Out = pcs;
+  assign hlt_Out = hlt;
+  assign load_byte_Out = load_byte; 
+  assign sw_Out = sw;
+  
+   
 
 always @(*) 
   begin
@@ -42,10 +39,10 @@ always @(*)
     MemRead = 0;
     br = 0;
     pcs = 0;
-    hlt_ = 0;
+    hlt = 0;
     load_byte = 0; 
     sw = 0;
-    case(opcode)
+    case(instruction[15:12])
     4'b0000: begin  // ADD
       RegWrite = 1;
       MemtoReg = 1; 
@@ -98,11 +95,13 @@ always @(*)
       load_byte = 1;
       MemtoReg = 1;
       RegWrite = 1;
+	  ALUSrc = 1;
       end 
     4'b1011: begin// LHB
       load_byte = 1;
       MemtoReg = 1;
       RegWrite = 1;
+	  ALUSrc = 1;
       end 
     4'b1100: begin// B
       PCSrc = 1;
@@ -116,7 +115,7 @@ always @(*)
       RegWrite = 1;
       end 
     4'b1111: begin// HLT
-      hlt_ = 1;
+      hlt = 1;
       end 
     default: begin
       end 
@@ -124,15 +123,4 @@ always @(*)
   end
 
 //reg [15:0] ALUSrcMux, MemtoRegMux, PCSrcMux; 
-assign ALUSrcMux = load_byte ? {instruction[7:0]} : ALUSrc ? {{12{operand2[3]}},operand2} : SrcData2;
-assign MemtoRegMux = pcs ? PCSrcMux : MemtoReg ? ALU_Out : data_out;
-assign PCSrcMux = hlt_ ? pc : PCSrc ? br_pc : nxt_pc;
-assign SrcReg1 = load_byte ? destination : operand1; 
-assign SrcReg2 = sw ? destination : operand2;
-assign hlt = hlt_;
-assign BR = br;
-
-assign RegWrite2 = ~rst_n ? 1'b0 : RegWrite;
-assign MemWrite2 = ~rst_n ? 1'b0 : MemWrite;
-assign MemRead2 = ~rst_n ? 1'b0 : MemRead;
 endmodule

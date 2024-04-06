@@ -1,4 +1,6 @@
 module ID_EXRegister(
+  input clk,
+  input rst_n,
   input [3:0] D_Operand1,
   input [3:0] D_Operand2_Mux,
   input [3:0] D_Operand2_Fw,

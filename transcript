@@ -1,423 +1,956 @@
-# Compile of CLA4.v was successful.
-# Compile of CLA4.v was successful.
-# Compile of Register.sv was successful.
-# Compile of Register.v was successful.
-# Compile of Add_Sub_16bit.v failed with 6 errors.
-# Compile of Add_Sub_16bit.v failed with 1 errors.
-# Compile of Add_Sub_16bit.v failed with 1 errors.
-# Compile of Add_Sub_16bit.v was successful.
-# Compile of FA.sv was successful.
-# Compile of CLA4.v was successful.
-# Compile of Register.v was successful.
-# Compile of Add_Sub_16bit.v was successful.
-# Compile of ALU.v failed with 2 errors.
-# Compile of BitCell.v was successful.
-# Compile of dff.v was successful.
-# Compile of project-phase1-testbench.v was successful.
-# Compile of PSA_16bit.v was successful.
-# Compile of ReadDecoder_4_16.v failed with 2 errors.
-# Compile of RegisterFile.v was successful.
-# Compile of Shifter.v failed with 2 errors.
-# Compile of WriteDecoder_4_16.v failed with 2 errors.
-# 13 compiles, 4 failed with 8 errors.
-# Compile of WriteDecoder_4_16.v was successful.
-# Compile of Shifter.v was successful.
-# Compile of ALU.v was successful.
-# Compile of ReadDecoder_4_16.v was successful.
-# Compile of CLA4.v was successful.
-# Compile of Add_Sub_16bit.v was successful.
-# Compile of CLA4.v was successful.
-# Compile of CLA4.v failed with 1 errors.
-# Compile of CLA4.v was successful.
-# Compile of Add_Sub_16bit.v failed with 2 errors.
-# Compile of Add_Sub_16bit.v was successful.
-# Compile of CLA4.v was successful.
-# Compile of Add_Sub_16bit.v failed with 2 errors.
-# Compile of Add_Sub_16bit.v failed with 1 errors.
-# Compile of Add_Sub_16bit.v was successful.
-# Compile of RED.v failed with 1 errors.
-# Compile of RED.v failed with 6 errors.
-# Compile of RED.v failed with 3 errors.
-# Compile of RED.v failed with 1 errors.
-# Compile of RED.v was successful.
-# Compile of sample_adder_testbench.v was successful.
-# Compile of sample_adder_testbench.v was successful.
-# Load canceled
-vlog -work I:/ece552/ProjectPart1/work -refresh -force_refresh
-# Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
-# Start time: 16:52:07 on Feb 29,2024
-# vlog -reportprogress 300 -work I:/ece552/ProjectPart1/work -refresh -force_refresh 
-# -- Refreshing module Add_Sub_16bit
-# -- Refreshing module ALU
-# -- Refreshing module BitCell
-# -- Refreshing module CLA4
-# -- Refreshing module cpu_tb
-# -- Refreshing module dff
-# -- Refreshing module FA
-# -- Refreshing module PSA_16bit
-# -- Refreshing module ReadDecoder_4_16
-# -- Refreshing module RED
-# -- Refreshing module Register
-# -- Refreshing module RegisterFile
-# -- Refreshing module Shifter
-# -- Refreshing module t_adder4b
-# -- Refreshing module WriteDecoder_4_16
-# End time: 16:52:07 on Feb 29,2024, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vcom -work I:/ece552/ProjectPart1/work -refresh -force_refresh
-# Questa Intel Starter FPGA Edition-64 vcom 2021.2 Compiler 2021.04 Apr 14 2021
-# Start time: 16:52:07 on Feb 29,2024
-# vcom -reportprogress 300 -work I:/ece552/ProjectPart1/work -refresh -force_refresh 
-# -- Skipping module Add_Sub_16bit
-# -- Skipping module ALU
-# -- Skipping module BitCell
-# -- Skipping module CLA4
-# -- Skipping module cpu_tb
-# -- Skipping module dff
-# -- Skipping module FA
-# -- Skipping module PSA_16bit
-# -- Skipping module ReadDecoder_4_16
-# -- Skipping module RED
-# -- Skipping module Register
-# -- Skipping module RegisterFile
-# -- Skipping module Shifter
-# -- Skipping module t_adder4b
-# -- Skipping module WriteDecoder_4_16
-# End time: 16:52:08 on Feb 29,2024, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-# Compile of FA.sv was successful.
-# Compile of CLA4.v was successful.
-# Compile of Register.v was successful.
-# Compile of Add_Sub_16bit.v was successful.
-# Compile of ALU.v was successful.
-# Compile of BitCell.v was successful.
-# Compile of dff.v was successful.
-# Compile of project-phase1-testbench.v was successful.
-# Compile of PSA_16bit.v was successful.
-# Compile of ReadDecoder_4_16.v was successful.
-# Compile of RegisterFile.v was successful.
-# Compile of Shifter.v was successful.
-# Compile of WriteDecoder_4_16.v was successful.
-# Compile of RED.v was successful.
-# Compile of addsub_4bit.sv was successful.
-# Load canceled
-# Compile of adder4bit+tb.v was successful.
-# Compile of sample_adder_testbench.v was successful.
-# 17 compiles, 0 failed with no errors.
-vsim -voptargs=+acc work.t_adder4b
-# vsim -voptargs="+acc" work.t_adder4b 
-# Start time: 16:52:41 on Feb 29,2024
+# Compile of cpu.v was successful.
+vsim work.cpu_ptb
+# vsim work.cpu_ptb 
+# Start time: 11:12:56 on Apr 06,2024
 # ** Note: (vsim-3812) Design is being optimized...
-# ** Error (suppressible): I:/ece552/ProjectPart1/support/sample_adder_testbench.v(13): (vopt-2912) Port 'subAdd' not found in module 'CLA4' (3rd connection).
-# ** Error (suppressible): I:/ece552/ProjectPart1/support/sample_adder_testbench.v(13): (vopt-2912) Port 'overflow' not found in module 'CLA4' (4th connection).
-# ** Error (suppressible): I:/ece552/ProjectPart1/support/sample_adder_testbench.v(13): (vopt-2912) Port 'result' not found in module 'CLA4' (5th connection).
-# Optimization failed
-# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=3, Warnings=0.
-# Error loading design
-# End time: 16:52:46 on Feb 29,2024, Elapsed time: 0:00:05
-# Errors: 3, Warnings: 54
-# Compile of sample_adder_testbench.v was successful.
-vsim -voptargs=+acc work.t_adder4b
-# vsim -voptargs="+acc" work.t_adder4b 
-# Start time: 16:55:39 on Feb 29,2024
-# ** Note: (vsim-3812) Design is being optimized...
-# ** Error (suppressible): I:/ece552/ProjectPart1/support/sample_adder_testbench.v(14): (vopt-2912) Port 'S' not found in module 'CLA4' (4th connection).
-# Optimization failed
-# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=1, Warnings=0.
-# Error loading design
-# End time: 16:55:45 on Feb 29,2024, Elapsed time: 0:00:06
-# Errors: 1, Warnings: 2
-# Compile of sample_adder_testbench.v was successful.
-vsim -voptargs=+acc work.t_adder4b
-# vsim -voptargs="+acc" work.t_adder4b 
-# Start time: 16:56:03 on Feb 29,2024
-# ** Note: (vsim-3812) Design is being optimized...
-# Loading work.t_adder4b(fast)
-# Loading work.CLA4(fast)
-run -all
-# Incorrect
-# Incorrect
-# Correct
-# Correct
-# Incorrect
-# Correct
-# Incorrect
-# Incorrect
-# Incorrect
-# Incorrect
-# Correct
-# Incorrect
-# Correct
-# Incorrect
-# Incorrect
-# Incorrect
-# Correct
-# Correct
-# Incorrect
-# Correct
-# Incorrect
-# Incorrect
-# Incorrect
-# Correct
-# Incorrect
-# Incorrect
-# Correct
-# Correct
-# Incorrect
-# Correct
-# Incorrect
-# Incorrect
-# Correct
-# Correct
-# Incorrect
-# Incorrect
-# Incorrect
-# Correct
-# Incorrect
-# Correct
-# Incorrect
-# Correct
-# Correct
-# Incorrect
-# Incorrect
-# Correct
-# Incorrect
-# Incorrect
-# Correct
-# Incorrect
-# Correct
-# Correct
-# Incorrect
-# Incorrect
-# Incorrect
-# Correct
-# Incorrect
-# Incorrect
-# Correct
-# Correct
-# Incorrect
-# Incorrect
-# Correct
-# Correct
-# Incorrect
-# Correct
-# Correct
-# Correct
-# Correct
-# Correct
-# Incorrect
-# Correct
-# Incorrect
-# Incorrect
-# Correct
-# Incorrect
-# Incorrect
-# Incorrect
-# Correct
-# Incorrect
-# Correct
-# Correct
-# Incorrect
-# Correct
-# Correct
-# Correct
-# Incorrect
-# Correct
-# Correct
-# Correct
-# Incorrect
-# Incorrect
-# Correct
-# Incorrect
-# Correct
-# Correct
-# Correct
-# Correct
-# Correct
-# Correct
-# ** Note: $stop    : I:/ece552/ProjectPart1/support/sample_adder_testbench.v(24)
-#    Time: 2010 ns  Iteration: 0  Instance: /t_adder4b
-# Break in Module t_adder4b at I:/ece552/ProjectPart1/support/sample_adder_testbench.v line 24
-quit -sim
-# End time: 16:57:13 on Feb 29,2024, Elapsed time: 0:01:10
+# Loading work.cpu_ptb(fast)
+vsim work.cpu_ptb -voptargs=+acc
+# End time: 11:13:30 on Apr 06,2024, Elapsed time: 0:00:34
 # Errors: 0, Warnings: 2
-# Compile of addsub_4bit_tb.sv failed with 1 errors.
-# Compile of addsub_4bit_tb.sv was successful.
-vsim -voptargs=+acc work.addsub_4bit_tb
-# vsim -voptargs="+acc" work.addsub_4bit_tb 
-# Start time: 17:02:43 on Feb 29,2024
+# vsim work.cpu_ptb -voptargs="+acc" 
+# Start time: 11:13:30 on Apr 06,2024
 # ** Note: (vsim-3812) Design is being optimized...
-# ** Error (suppressible): I:/ece552/addsub_4bit_tb.sv(10): (vopt-2912) Port 'Cin' not found in module 'addsub_4bit' (5th connection).
-# ** Error (suppressible): I:/ece552/addsub_4bit_tb.sv(10): (vopt-2912) Port 'Cout' not found in module 'addsub_4bit' (6th connection).
-# Optimization failed
-# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=2, Warnings=0.
-# Error loading design
-# End time: 17:02:47 on Feb 29,2024, Elapsed time: 0:00:04
-# Errors: 2, Warnings: 4
-# Compile of addsub_4bit_tb.sv was successful.
-vsim -voptargs=+acc work.addsub_4bit_tb
-# vsim -voptargs="+acc" work.addsub_4bit_tb 
-# Start time: 17:02:58 on Feb 29,2024
-# ** Note: (vsim-3812) Design is being optimized...
-# Loading sv_std.std
-# Loading work.addsub_4bit_tb(fast)
-# Loading work.CLA4(fast)
-run -all
-# Test case 0 failed: A=4, B=1, sub=1, Expected Sum= 3, Actual Sum= z, Expected Ovfl=0, Actual Ovfl=0
-# Test case 1 failed: A=3, B=d, sub=1, Expected Sum= 6, Actual Sum= z, Expected Ovfl=0, Actual Ovfl=0
-# Test case 2 failed: A=5, B=2, sub=1, Expected Sum= 3, Actual Sum= z, Expected Ovfl=0, Actual Ovfl=1
-# Test case 3 failed: A=d, B=6, sub=1, Expected Sum= 7, Actual Sum= z, Expected Ovfl=1, Actual Ovfl=0
-# Test case 4 failed: A=d, B=c, sub=1, Expected Sum= 1, Actual Sum= z, Expected Ovfl=0, Actual Ovfl=0
-# Test case 5 failed: A=6, B=5, sub=0, Expected Sum= 1, Actual Sum= z, Expected Ovfl=0, Actual Ovfl=1
-# Test case 6 failed: A=5, B=7, sub=0, Expected Sum=14, Actual Sum= z, Expected Ovfl=0, Actual Ovfl=1
-# Test case 7 failed: A=f, B=2, sub=0, Expected Sum=13, Actual Sum= z, Expected Ovfl=0, Actual Ovfl=0
-# Test case 8 failed: A=8, B=5, sub=0, Expected Sum= 3, Actual Sum= z, Expected Ovfl=1, Actual Ovfl=0
-# Test case 9 failed: A=d, B=d, sub=1, Expected Sum= 0, Actual Sum= z, Expected Ovfl=0, Actual Ovfl=0
-# ** Note: $stop    : I:/ece552/addsub_4bit_tb.sv(49)
-#    Time: 50 ns  Iteration: 0  Instance: /addsub_4bit_tb
-# Break in Module addsub_4bit_tb at I:/ece552/addsub_4bit_tb.sv line 49
-# Compile of CLA4.v was successful.
-restart -f
-# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
-# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
-# Loading sv_std.std
-# Loading work.addsub_4bit_tb(fast)
-# Loading work.CLA4(fast)
-run -all
-# Test case 0 failed: A=4, B=1, sub=1, Expected Sum= 3, Actual Sum= 6, Expected Ovfl=0, Actual Ovfl=0
-# Test case 1 failed: A=3, B=d, sub=1, Expected Sum= 6, Actual Sum= 1, Expected Ovfl=0, Actual Ovfl=0
-# Test case 2 failed: A=5, B=2, sub=1, Expected Sum= 3, Actual Sum= 8, Expected Ovfl=0, Actual Ovfl=1
-# Test case 3 failed: A=d, B=6, sub=1, Expected Sum= 7, Actual Sum= 4, Expected Ovfl=1, Actual Ovfl=0
-# Test case 4 failed: A=d, B=c, sub=1, Expected Sum= 1, Actual Sum=10, Expected Ovfl=0, Actual Ovfl=0
-# Test case 5 failed: A=6, B=5, sub=0, Expected Sum= 1, Actual Sum=11, Expected Ovfl=0, Actual Ovfl=1
-# Test case 6 failed: A=5, B=7, sub=0, Expected Sum=14, Actual Sum=12, Expected Ovfl=0, Actual Ovfl=1
-# Test case 7 failed: A=f, B=2, sub=0, Expected Sum=13, Actual Sum= 1, Expected Ovfl=0, Actual Ovfl=0
-# Test case 8 failed: A=8, B=5, sub=0, Expected Sum= 3, Actual Sum=13, Expected Ovfl=1, Actual Ovfl=0
-# Test case 9 failed: A=d, B=d, sub=1, Expected Sum= 0, Actual Sum=11, Expected Ovfl=0, Actual Ovfl=0
-# ** Note: $stop    : I:/ece552/addsub_4bit_tb.sv(49)
-#    Time: 50 ns  Iteration: 0  Instance: /addsub_4bit_tb
-# Break in Module addsub_4bit_tb at I:/ece552/addsub_4bit_tb.sv line 49
-# Compile of addsub_4bit_tb.sv was successful.
-restart -f
-# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
-# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
-# Loading sv_std.std
-# Loading work.addsub_4bit_tb(fast)
-# Loading work.CLA4(fast)
-run -all
-# Test case 0 failed: A=4, B=1, sub=1, Expected Sum= 5, Actual Sum= 6, Expected Ovfl=0, Actual Ovfl=0
-# Test case 1 failed: A=3, B=d, sub=1, Expected Sum= 0, Actual Sum= 1, Expected Ovfl=0, Actual Ovfl=0
-# Test case 2 failed: A=5, B=2, sub=1, Expected Sum= 7, Actual Sum= 8, Expected Ovfl=0, Actual Ovfl=1
-# Test case 3 failed: A=d, B=6, sub=1, Expected Sum= 3, Actual Sum= 4, Expected Ovfl=0, Actual Ovfl=0
-# Test case 4 failed: A=d, B=c, sub=1, Expected Sum= 9, Actual Sum=10, Expected Ovfl=0, Actual Ovfl=0
-# Test case 5 passed: A=6, B=5, sub=0, Sum=11, Ovfl=1
-# Test case 6 passed: A=5, B=7, sub=0, Sum=12, Ovfl=1
-# Test case 7 passed: A=f, B=2, sub=0, Sum= 1, Ovfl=0
-# Test case 8 passed: A=8, B=5, sub=0, Sum=13, Ovfl=0
-# Test case 9 failed: A=d, B=d, sub=1, Expected Sum=10, Actual Sum=11, Expected Ovfl=0, Actual Ovfl=0
-# ** Note: $stop    : I:/ece552/addsub_4bit_tb.sv(50)
-#    Time: 50 ns  Iteration: 0  Instance: /addsub_4bit_tb
-# Break in Module addsub_4bit_tb at I:/ece552/addsub_4bit_tb.sv line 50
-# Compile of addsub_4bit_tb.sv was successful.
-restart -f
-# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
-# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
-# Loading sv_std.std
-# Loading work.addsub_4bit_tb(fast)
-# Loading work.CLA4(fast)
-run -all
-# Test case 0 passed: A=4, B=1, sub=1, Sum= 6, Ovfl=0
-# Test case 1 passed: A=3, B=d, sub=1, Sum= 1, Ovfl=0
-# Test case 2 passed: A=5, B=2, sub=1, Sum= 8, Ovfl=1
-# Test case 3 passed: A=d, B=6, sub=1, Sum= 4, Ovfl=0
-# Test case 4 passed: A=d, B=c, sub=1, Sum=10, Ovfl=0
-# Test case 5 passed: A=6, B=5, sub=0, Sum=11, Ovfl=1
-# Test case 6 passed: A=5, B=7, sub=0, Sum=12, Ovfl=1
-# Test case 7 passed: A=f, B=2, sub=0, Sum= 1, Ovfl=0
-# Test case 8 passed: A=8, B=5, sub=0, Sum=13, Ovfl=0
-# Test case 9 passed: A=d, B=d, sub=1, Sum=11, Ovfl=0
-# ** Note: $stop    : I:/ece552/addsub_4bit_tb.sv(50)
-#    Time: 50 ns  Iteration: 0  Instance: /addsub_4bit_tb
-# Break in Module addsub_4bit_tb at I:/ece552/addsub_4bit_tb.sv line 50
-quit -sim
-# End time: 17:10:21 on Feb 29,2024, Elapsed time: 0:07:23
-# Errors: 0, Warnings: 1
-# Compile of addsub_4bit_tb.sv was successful.
-vsim -voptargs=+acc work.addsub_4bit_tb
-# vsim -voptargs="+acc" work.addsub_4bit_tb 
-# Start time: 17:23:45 on Feb 29,2024
-# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
-# ** Error (suppressible): I:/ece552/addsub_4bit_tb.sv(40): (vopt-7063) Failed to find 'Cin' in hierarchical name 'Cin'.
-#         Region: addsub_4bit_tb
-# Optimization failed
-# ** Warning: (vopt-31) Unable to unlink file "I:/ece552/ProjectPart1/work/@_opt1/_lib3_0.qpg".
-# ** Warning: (vopt-31) Unable to unlink file "I:/ece552/ProjectPart1/work/@_opt1/_lib3_0.qtl".
-# The process cannot access the file because it is being used by another process. (GetLastError() = 32)
-# ** Warning: (vopt-133) Unable to remove directory "I:/ece552/ProjectPart1/work/@_opt1".
-# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=1, Warnings=3.
-# Error loading design
-# End time: 17:23:50 on Feb 29,2024, Elapsed time: 0:00:05
-# Errors: 1, Warnings: 5
-# Compile of addsub_4bit_tb.sv was successful.
-vsim -voptargs=+acc work.addsub_4bit_tb
-# vsim -voptargs="+acc" work.addsub_4bit_tb 
-# Start time: 17:24:20 on Feb 29,2024
-# ** Note: (vsim-3812) Design is being optimized...
-# ** Error (suppressible): I:/ece552/addsub_4bit_tb.sv(40): (vopt-7063) Failed to find 'Cin' in hierarchical name 'Cin'.
-#         Region: addsub_4bit_tb
-# Optimization failed
-# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=1, Warnings=0.
-# Error loading design
-# End time: 17:24:24 on Feb 29,2024, Elapsed time: 0:00:04
-# Errors: 1, Warnings: 2
-# Compile of addsub_4bit_tb.sv was successful.
-vsim -voptargs=+acc work.addsub_4bit_tb
-# vsim -voptargs="+acc" work.addsub_4bit_tb 
-# Start time: 17:24:45 on Feb 29,2024
-# ** Note: (vsim-3812) Design is being optimized...
-# ** Error (suppressible): I:/ece552/ProjectPart1/Add_Sub_16bit.v(15): (vopt-2912) Port 'S' not found in module 'CLA4' (4th connection).
-# ** Error (suppressible): I:/ece552/ProjectPart1/Add_Sub_16bit.v(14): (vopt-2912) Port 'S' not found in module 'CLA4' (4th connection).
-# ** Error (suppressible): I:/ece552/ProjectPart1/Add_Sub_16bit.v(13): (vopt-2912) Port 'S' not found in module 'CLA4' (4th connection).
-# ** Error (suppressible): I:/ece552/ProjectPart1/Add_Sub_16bit.v(12): (vopt-2912) Port 'S' not found in module 'CLA4' (4th connection).
-# Optimization failed
-# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=4, Warnings=0.
-# Error loading design
-# End time: 17:24:49 on Feb 29,2024, Elapsed time: 0:00:04
-# Errors: 4, Warnings: 2
-# Compile of RED.v was successful.
-vsim -voptargs=+acc work.addsub_4bit_tb
-# vsim -voptargs="+acc" work.addsub_4bit_tb 
-# Start time: 17:26:02 on Feb 29,2024
-# ** Note: (vsim-3812) Design is being optimized...
-# ** Error (suppressible): I:/ece552/ProjectPart1/Add_Sub_16bit.v(15): (vopt-2912) Port 'S' not found in module 'CLA4' (4th connection).
-# ** Error (suppressible): I:/ece552/ProjectPart1/Add_Sub_16bit.v(14): (vopt-2912) Port 'S' not found in module 'CLA4' (4th connection).
-# ** Error (suppressible): I:/ece552/ProjectPart1/Add_Sub_16bit.v(13): (vopt-2912) Port 'S' not found in module 'CLA4' (4th connection).
-# ** Error (suppressible): I:/ece552/ProjectPart1/Add_Sub_16bit.v(12): (vopt-2912) Port 'S' not found in module 'CLA4' (4th connection).
-# Optimization failed
-# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=4, Warnings=0.
-# Error loading design
-# End time: 17:26:09 on Feb 29,2024, Elapsed time: 0:00:07
-# Errors: 4, Warnings: 2
-# Compile of Add_Sub_16bit.v was successful.
-vsim -voptargs=+acc work.addsub_4bit_tb
-# vsim -voptargs="+acc" work.addsub_4bit_tb 
-# Start time: 17:27:32 on Feb 29,2024
-# ** Note: (vsim-3812) Design is being optimized...
-# Loading sv_std.std
-# Loading work.addsub_4bit_tb(fast)
+# Loading work.cpu_ptb(fast)
+# Loading work.cpu(fast)
+# Loading work.memory1c(fast)
 # Loading work.Add_Sub_16bit(fast)
 # Loading work.CLA4(fast)
+# Loading work.RegisterFile(fast)
+# Loading work.ReadDecoder_4_16(fast)
+# Loading work.WriteDecoder_4_16(fast)
+# Loading work.control_signals(fast)
+# Loading work.PC_control(fast)
+# Loading work.ID_EXRegister(fast)
+# Loading work.dff(fast)
+# Loading work.ALU(fast)
+# Loading work.RED(fast)
+# Loading work.Shifter(fast)
+# Loading work.PSA_16bit(fast)
+# Loading work.EX_MEMRegister(fast)
+# Loading work.MEM_WBRegister(fast)
+# Loading work.Register(fast)
+# Loading work.BitCell(fast)
+add wave -position insertpoint sim:/cpu_ptb/DUT/*
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: esparzadiaz  Hostname: WIN-1017  ProcessID: 17500
+#           Attempting to use alternate WLF file "./wlftskyxfz".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlftskyxfz
 run -all
-# Test case 0 passed: A=3524, B=5e81, sub=1, Sum=54947, Ovfl=0
-# Test case 1 passed: A=5663, B=7b0d, sub=1, Sum=56150, Ovfl=0
-# Test case 2 failed: A=8465, B=5212, sub=1, Expected Sum=12883, Actual Sum=32768, Expected Ovfl=1, Actual Ovfl=1
-# Test case 3 passed: A=cd0d, B=f176, sub=1, Sum=56215, Ovfl=0
-# Test case 4 passed: A=57ed, B=f78c, sub=1, Sum=24673, Ovfl=0
-# Test case 5 passed: A=24c6, B=84c5, sub=0, Sum=43403, Ovfl=0
-# Test case 6 passed: A=f7e5, B=7277, sub=0, Sum=27228, Ovfl=0
-# Test case 7 passed: A=db8f, B=69f2, sub=0, Sum=17793, Ovfl=0
-# Test case 8 failed: A=7ae8, B=4ec5, sub=0, Expected Sum=51629, Actual Sum=32767, Expected Ovfl=1, Actual Ovfl=1
-# Test case 9 passed: A=28bd, B=582d, sub=1, Sum=53392, Ovfl=0
-# ** Note: $stop    : I:/ece552/addsub_4bit_tb.sv(47)
-#    Time: 50 ns  Iteration: 0  Instance: /addsub_4bit_tb
-# Break in Module addsub_4bit_tb at I:/ece552/addsub_4bit_tb.sv line 47
+# Hello world...simulation starting
+# See verilogsim.plog and verilogsim.ptrace for output
+# ** Note: $finish    : I:/ece552/552Project/project-phase2-testbench.v(123)
+#    Time: 2005 ns  Iteration: 0  Instance: /cpu_ptb
+# 1
+# Break in Module cpu_ptb at I:/ece552/552Project/project-phase2-testbench.v line 123
+# Compile of Memory.v was successful.
+restart
+# Closing VCD file "dump.vcd"
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading work.cpu_ptb(fast)
+# Loading work.cpu(fast)
+# Loading work.memory1c(fast)
+# Loading work.Add_Sub_16bit(fast)
+# Loading work.CLA4(fast)
+# Loading work.RegisterFile(fast)
+# Loading work.ReadDecoder_4_16(fast)
+# Loading work.WriteDecoder_4_16(fast)
+# Loading work.control_signals(fast)
+# Loading work.PC_control(fast)
+# Loading work.ID_EXRegister(fast)
+# Loading work.dff(fast)
+# Loading work.ALU(fast)
+# Loading work.RED(fast)
+# Loading work.Shifter(fast)
+# Loading work.PSA_16bit(fast)
+# Loading work.EX_MEMRegister(fast)
+# Loading work.MEM_WBRegister(fast)
+# Loading work.Register(fast)
+# Loading work.BitCell(fast)
+run -all
+# Hello world...simulation starting
+# See verilogsim.plog and verilogsim.ptrace for output
+# ** Note: $finish    : I:/ece552/552Project/project-phase2-testbench.v(123)
+#    Time: 1705 ns  Iteration: 0  Instance: /cpu_ptb
+# 1
+# Break in Module cpu_ptb at I:/ece552/552Project/project-phase2-testbench.v line 123
+add wave -position 78 sim:/cpu_ptb/#ALWAYS#84
+# ** UI-Msg: (vish-4014) No objects found matching '/cpu_ptb/#ALWAYS#84'.
+# Compile of cpu.v was successful.
+restart
+# Closing VCD file "dump.vcd"
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading work.cpu_ptb(fast)
+# Loading work.cpu(fast)
+# Loading work.memory1c(fast)
+# Loading work.Add_Sub_16bit(fast)
+# Loading work.CLA4(fast)
+# Loading work.RegisterFile(fast)
+# Loading work.ReadDecoder_4_16(fast)
+# Loading work.WriteDecoder_4_16(fast)
+# Loading work.control_signals(fast)
+# Loading work.PC_control(fast)
+# Loading work.ID_EXRegister(fast)
+# Loading work.dff(fast)
+# Loading work.ALU(fast)
+# Loading work.RED(fast)
+# Loading work.Shifter(fast)
+# Loading work.PSA_16bit(fast)
+# Loading work.EX_MEMRegister(fast)
+# Loading work.MEM_WBRegister(fast)
+# Loading work.Register(fast)
+# Loading work.BitCell(fast)
+run -all
+# Hello world...simulation starting
+# See verilogsim.plog and verilogsim.ptrace for output
+# ** Note: $finish    : I:/ece552/552Project/project-phase2-testbench.v(123)
+#    Time: 1705 ns  Iteration: 0  Instance: /cpu_ptb
+# 1
+# Break in Module cpu_ptb at I:/ece552/552Project/project-phase2-testbench.v line 123
+# Compile of cpu.v was successful.
+restart
+# Closing VCD file "dump.vcd"
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading work.cpu_ptb(fast)
+# Loading work.cpu(fast)
+# Loading work.memory1c(fast)
+# Loading work.Add_Sub_16bit(fast)
+# Loading work.CLA4(fast)
+# Loading work.RegisterFile(fast)
+# Loading work.ReadDecoder_4_16(fast)
+# Loading work.WriteDecoder_4_16(fast)
+# Loading work.control_signals(fast)
+# Loading work.PC_control(fast)
+# Loading work.ID_EXRegister(fast)
+# Loading work.dff(fast)
+# Loading work.ALU(fast)
+# Loading work.RED(fast)
+# Loading work.Shifter(fast)
+# Loading work.PSA_16bit(fast)
+# Loading work.EX_MEMRegister(fast)
+# Loading work.MEM_WBRegister(fast)
+# Loading work.Register(fast)
+# Loading work.BitCell(fast)
+run -all
+# Hello world...simulation starting
+# See verilogsim.plog and verilogsim.ptrace for output
+# ** Note: $finish    : I:/ece552/552Project/project-phase2-testbench.v(123)
+#    Time: 1705 ns  Iteration: 0  Instance: /cpu_ptb
+# 1
+# Break in Module cpu_ptb at I:/ece552/552Project/project-phase2-testbench.v line 123
+# Compile of cpu.v was successful.
+restart
+# Closing VCD file "dump.vcd"
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading work.cpu_ptb(fast)
+# Loading work.cpu(fast)
+# Loading work.memory1c(fast)
+# Loading work.Add_Sub_16bit(fast)
+# Loading work.CLA4(fast)
+# Loading work.RegisterFile(fast)
+# Loading work.ReadDecoder_4_16(fast)
+# Loading work.WriteDecoder_4_16(fast)
+# Loading work.control_signals(fast)
+# Loading work.PC_control(fast)
+# Loading work.ID_EXRegister(fast)
+# Loading work.dff(fast)
+# Loading work.ALU(fast)
+# Loading work.RED(fast)
+# Loading work.Shifter(fast)
+# Loading work.PSA_16bit(fast)
+# Loading work.EX_MEMRegister(fast)
+# Loading work.MEM_WBRegister(fast)
+# Loading work.Register(fast)
+# Loading work.BitCell(fast)
+run -all
+# Hello world...simulation starting
+# See verilogsim.plog and verilogsim.ptrace for output
+# ** Note: $finish    : I:/ece552/552Project/project-phase2-testbench.v(123)
+#    Time: 1705 ns  Iteration: 0  Instance: /cpu_ptb
+# 1
+# Break in Module cpu_ptb at I:/ece552/552Project/project-phase2-testbench.v line 123
+run -all
+# ** Warning: No matching channel descriptor '4' found.  Ignoring the write into the invalid channel.
+#    Time: 1800 ns  Iteration: 1  Instance: /cpu_ptb
+# ** Warning: No matching channel descriptor '4' found.  Ignoring the write into the invalid channel.
+#    Time: 1800 ns  Iteration: 1  Instance: /cpu_ptb
+# ** Warning: No matching channel descriptor '4' found.  Ignoring the write into the invalid channel.
+#    Time: 1800 ns  Iteration: 1  Instance: /cpu_ptb
+# ** Warning: No matching channel descriptor '4' found.  Ignoring the write into the invalid channel.
+#    Time: 1800 ns  Iteration: 1  Instance: /cpu_ptb
+# ** Note: $finish    : I:/ece552/552Project/project-phase2-testbench.v(123)
+#    Time: 1805 ns  Iteration: 0  Instance: /cpu_ptb
+# 1
+# Break in Module cpu_ptb at I:/ece552/552Project/project-phase2-testbench.v line 123
+# Compile of Memory.v was successful.
+restart
+# Closing VCD file "dump.vcd"
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading work.cpu_ptb(fast)
+# Loading work.cpu(fast)
+# Loading work.memory1c(fast)
+# Loading work.Add_Sub_16bit(fast)
+# Loading work.CLA4(fast)
+# Loading work.RegisterFile(fast)
+# Loading work.ReadDecoder_4_16(fast)
+# Loading work.WriteDecoder_4_16(fast)
+# Loading work.control_signals(fast)
+# Loading work.PC_control(fast)
+# Loading work.ID_EXRegister(fast)
+# Loading work.dff(fast)
+# Loading work.ALU(fast)
+# Loading work.RED(fast)
+# Loading work.Shifter(fast)
+# Loading work.PSA_16bit(fast)
+# Loading work.EX_MEMRegister(fast)
+# Loading work.MEM_WBRegister(fast)
+# Loading work.Register(fast)
+# Loading work.BitCell(fast)
+run -all
+# Hello world...simulation starting
+# See verilogsim.plog and verilogsim.ptrace for output
+# ** Note: $finish    : I:/ece552/552Project/project-phase2-testbench.v(123)
+#    Time: 2005 ns  Iteration: 0  Instance: /cpu_ptb
+# 1
+# Break in Module cpu_ptb at I:/ece552/552Project/project-phase2-testbench.v line 123
+# Compile of cpu.v was successful.
+restart
+# Closing VCD file "dump.vcd"
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading work.cpu_ptb(fast)
+# Loading work.cpu(fast)
+# Loading work.memory1c(fast)
+# Loading work.Add_Sub_16bit(fast)
+# Loading work.CLA4(fast)
+# Loading work.RegisterFile(fast)
+# Loading work.ReadDecoder_4_16(fast)
+# Loading work.WriteDecoder_4_16(fast)
+# Loading work.control_signals(fast)
+# Loading work.PC_control(fast)
+# Loading work.ID_EXRegister(fast)
+# Loading work.dff(fast)
+# Loading work.ALU(fast)
+# Loading work.RED(fast)
+# Loading work.Shifter(fast)
+# Loading work.PSA_16bit(fast)
+# Loading work.EX_MEMRegister(fast)
+# Loading work.MEM_WBRegister(fast)
+# Loading work.Register(fast)
+# Loading work.BitCell(fast)
+run -all
+# Hello world...simulation starting
+# See verilogsim.plog and verilogsim.ptrace for output
+# ** Note: $finish    : I:/ece552/552Project/project-phase2-testbench.v(123)
+#    Time: 1905 ns  Iteration: 0  Instance: /cpu_ptb
+# 1
+# Break in Module cpu_ptb at I:/ece552/552Project/project-phase2-testbench.v line 123
+# Compile of Memory.v was successful.
+restart
+# Closing VCD file "dump.vcd"
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading work.cpu_ptb(fast)
+# Loading work.cpu(fast)
+# Loading work.memory1c(fast)
+# Loading work.Add_Sub_16bit(fast)
+# Loading work.CLA4(fast)
+# Loading work.RegisterFile(fast)
+# Loading work.ReadDecoder_4_16(fast)
+# Loading work.WriteDecoder_4_16(fast)
+# Loading work.control_signals(fast)
+# Loading work.PC_control(fast)
+# Loading work.ID_EXRegister(fast)
+# Loading work.dff(fast)
+# Loading work.ALU(fast)
+# Loading work.RED(fast)
+# Loading work.Shifter(fast)
+# Loading work.PSA_16bit(fast)
+# Loading work.EX_MEMRegister(fast)
+# Loading work.MEM_WBRegister(fast)
+# Loading work.Register(fast)
+# Loading work.BitCell(fast)
+run -all
+# Hello world...simulation starting
+# See verilogsim.plog and verilogsim.ptrace for output
+# ** Note: $finish    : I:/ece552/552Project/project-phase2-testbench.v(123)
+#    Time: 1705 ns  Iteration: 0  Instance: /cpu_ptb
+# 1
+# Break in Module cpu_ptb at I:/ece552/552Project/project-phase2-testbench.v line 123
+# Compile of cpu.v was successful.
+restart
+# Closing VCD file "dump.vcd"
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading work.cpu_ptb(fast)
+# Loading work.cpu(fast)
+# Loading work.memory1c(fast)
+# Loading work.Add_Sub_16bit(fast)
+# Loading work.CLA4(fast)
+# Loading work.RegisterFile(fast)
+# Loading work.ReadDecoder_4_16(fast)
+# Loading work.WriteDecoder_4_16(fast)
+# Loading work.control_signals(fast)
+# Loading work.PC_control(fast)
+# Loading work.ID_EXRegister(fast)
+# Loading work.dff(fast)
+# Loading work.ALU(fast)
+# Loading work.RED(fast)
+# Loading work.Shifter(fast)
+# Loading work.PSA_16bit(fast)
+# Loading work.EX_MEMRegister(fast)
+# Loading work.MEM_WBRegister(fast)
+# Loading work.Register(fast)
+# Loading work.BitCell(fast)
+run -all
+# Hello world...simulation starting
+# See verilogsim.plog and verilogsim.ptrace for output
+# ** Note: $finish    : I:/ece552/552Project/project-phase2-testbench.v(123)
+#    Time: 1705 ns  Iteration: 0  Instance: /cpu_ptb
+# 1
+# Break in Module cpu_ptb at I:/ece552/552Project/project-phase2-testbench.v line 123
+# Compile of cpu.v failed with 1 errors.
+# Compile of ID_EXRegister.v was successful.
+# 2 compiles, 1 failed with 1 error.
+# Compile of cpu.v was successful.
+restart
+# Closing VCD file "dump.vcd"
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading work.cpu_ptb(fast)
+# Loading work.cpu(fast)
+# Loading work.memory1c(fast)
+# Loading work.Add_Sub_16bit(fast)
+# Loading work.CLA4(fast)
+# Loading work.RegisterFile(fast)
+# Loading work.ReadDecoder_4_16(fast)
+# Loading work.WriteDecoder_4_16(fast)
+# Loading work.control_signals(fast)
+# Loading work.PC_control(fast)
+# Loading work.ID_EXRegister(fast)
+# Loading work.dff(fast)
+# Loading work.ALU(fast)
+# Loading work.RED(fast)
+# Loading work.Shifter(fast)
+# Loading work.PSA_16bit(fast)
+# Loading work.EX_MEMRegister(fast)
+# Loading work.MEM_WBRegister(fast)
+# Loading work.Register(fast)
+# Loading work.BitCell(fast)
+run -all
+# Hello world...simulation starting
+# See verilogsim.plog and verilogsim.ptrace for output
+# Compile of cpu.v was successful.
+# Compile of ID_EXRegister.v failed with 1 errors.
+# 2 compiles, 1 failed with 1 error.
+restart
+# Compile of ID_EXRegister.v was successful.
+restart
+# Closing VCD file "dump.vcd"
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading work.cpu_ptb(fast)
+# Loading work.cpu(fast)
+# Loading work.memory1c(fast)
+# Loading work.Add_Sub_16bit(fast)
+# Loading work.CLA4(fast)
+# Loading work.RegisterFile(fast)
+# Loading work.ReadDecoder_4_16(fast)
+# Loading work.WriteDecoder_4_16(fast)
+# Loading work.control_signals(fast)
+# Loading work.PC_control(fast)
+# Loading work.ID_EXRegister(fast)
+# Loading work.dff(fast)
+# Loading work.ALU(fast)
+# Loading work.RED(fast)
+# Loading work.Shifter(fast)
+# Loading work.PSA_16bit(fast)
+# Loading work.EX_MEMRegister(fast)
+# Loading work.MEM_WBRegister(fast)
+# Loading work.Register(fast)
+# Loading work.BitCell(fast)
+run -all
+# Hello world...simulation starting
+# See verilogsim.plog and verilogsim.ptrace for output
+# Compile of cpu.v was successful.
+# Compile of ID_EXRegister.v was successful.
+# 2 compiles, 0 failed with no errors.
+restart
+# Closing VCD file "dump.vcd"
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading work.cpu_ptb(fast)
+# Loading work.cpu(fast)
+# Loading work.memory1c(fast)
+# Loading work.Add_Sub_16bit(fast)
+# Loading work.CLA4(fast)
+# Loading work.RegisterFile(fast)
+# Loading work.ReadDecoder_4_16(fast)
+# Loading work.WriteDecoder_4_16(fast)
+# Loading work.control_signals(fast)
+# Loading work.PC_control(fast)
+# Loading work.ID_EXRegister(fast)
+# Loading work.dff(fast)
+# Loading work.ALU(fast)
+# Loading work.RED(fast)
+# Loading work.Shifter(fast)
+# Loading work.PSA_16bit(fast)
+# Loading work.EX_MEMRegister(fast)
+# Loading work.MEM_WBRegister(fast)
+# Loading work.Register(fast)
+# Loading work.BitCell(fast)
+run -all
+# Hello world...simulation starting
+# See verilogsim.plog and verilogsim.ptrace for output
+# ** Note: $finish    : I:/ece552/552Project/project-phase2-testbench.v(123)
+#    Time: 1705 ns  Iteration: 0  Instance: /cpu_ptb
+# 1
+# Break in Module cpu_ptb at I:/ece552/552Project/project-phase2-testbench.v line 123
+add wave -position insertpoint  \
+sim:/cpu_ptb/DUT/clk \
+sim:/cpu_ptb/DUT/rst_n \
+sim:/cpu_ptb/DUT/hlt \
+sim:/cpu_ptb/DUT/pc \
+sim:/cpu_ptb/DUT/br_pc \
+sim:/cpu_ptb/DUT/MemWrite2 \
+sim:/cpu_ptb/DUT/MemRead2 \
+sim:/cpu_ptb/DUT/RegWrite2 \
+sim:/cpu_ptb/DUT/ALUSrcMux \
+sim:/cpu_ptb/DUT/MemtoRegMux \
+sim:/cpu_ptb/DUT/PCSrcMux \
+sim:/cpu_ptb/DUT/nxt_pc \
+sim:/cpu_ptb/DUT/next_instr \
+sim:/cpu_ptb/DUT/F \
+sim:/cpu_ptb/DUT/Ovfl \
+sim:/cpu_ptb/DUT/D_Opcode \
+sim:/cpu_ptb/DUT/D_Destination \
+sim:/cpu_ptb/DUT/D_Operand1 \
+sim:/cpu_ptb/DUT/D_Operand2 \
+sim:/cpu_ptb/DUT/SrcReg1 \
+sim:/cpu_ptb/DUT/SrcReg2 \
+sim:/cpu_ptb/DUT/X_Operand1 \
+sim:/cpu_ptb/DUT/X_Operand2_Mux \
+sim:/cpu_ptb/DUT/X_Operand2_Fw \
+sim:/cpu_ptb/DUT/X_Destination \
+sim:/cpu_ptb/DUT/X_Opcode \
+sim:/cpu_ptb/DUT/M_Destination \
+sim:/cpu_ptb/DUT/W_Destination \
+sim:/cpu_ptb/DUT/D_Haz_opcode \
+sim:/cpu_ptb/DUT/D_Haz_Destination \
+sim:/cpu_ptb/DUT/D_Haz_Operand1 \
+sim:/cpu_ptb/DUT/D_Haz_Operand2 \
+sim:/cpu_ptb/DUT/D_Operand1_Out \
+sim:/cpu_ptb/DUT/D_Operand2_Out \
+sim:/cpu_ptb/DUT/X_Operand1_Out \
+sim:/cpu_ptb/DUT/X_Operand2_Out \
+sim:/cpu_ptb/DUT/M_WriteData \
+sim:/cpu_ptb/DUT/X_ALU_In1 \
+sim:/cpu_ptb/DUT/X_ALU_In2 \
+sim:/cpu_ptb/DUT/D_Haz_Operand1_Out \
+sim:/cpu_ptb/DUT/D_Haz_Operand2_Out \
+sim:/cpu_ptb/DUT/D_Haz_Nxt_Pc \
+sim:/cpu_ptb/DUT/M_MemData \
+sim:/cpu_ptb/DUT/M_Data_In \
+sim:/cpu_ptb/DUT/W_MemData \
+sim:/cpu_ptb/DUT/X_ALUout \
+sim:/cpu_ptb/DUT/instruction \
+sim:/cpu_ptb/DUT/M_ALUout \
+sim:/cpu_ptb/DUT/W_ALUout \
+sim:/cpu_ptb/DUT/D_RegWrite \
+sim:/cpu_ptb/DUT/D_ALUSrc \
+sim:/cpu_ptb/DUT/PCSrc \
+sim:/cpu_ptb/DUT/D_MemWrite \
+sim:/cpu_ptb/DUT/D_MemtoReg \
+sim:/cpu_ptb/DUT/D_MemRead \
+sim:/cpu_ptb/DUT/br \
+sim:/cpu_ptb/DUT/D_Pcs \
+sim:/cpu_ptb/DUT/D_hlt \
+sim:/cpu_ptb/DUT/D_load_byte \
+sim:/cpu_ptb/DUT/D_sw \
+sim:/cpu_ptb/DUT/D_Haz_RegWrite \
+sim:/cpu_ptb/DUT/D_Haz_ALUSrc \
+sim:/cpu_ptb/DUT/D_Haz_MemWrite \
+sim:/cpu_ptb/DUT/D_Haz_MemtoReg \
+sim:/cpu_ptb/DUT/D_Haz_MemRead \
+sim:/cpu_ptb/DUT/D_Haz_Pcs \
+sim:/cpu_ptb/DUT/D_Haz_hlt \
+sim:/cpu_ptb/DUT/D_Haz_load_byte \
+sim:/cpu_ptb/DUT/D_Haz_sw \
+sim:/cpu_ptb/DUT/X_RegWrite \
+sim:/cpu_ptb/DUT/X_ALUSrc \
+sim:/cpu_ptb/DUT/X_MemWrite \
+sim:/cpu_ptb/DUT/X_MemtoReg \
+sim:/cpu_ptb/DUT/X_MemRead \
+sim:/cpu_ptb/DUT/X_Pcs \
+sim:/cpu_ptb/DUT/X_hlt \
+sim:/cpu_ptb/DUT/X_load_byte \
+sim:/cpu_ptb/DUT/X_sw \
+sim:/cpu_ptb/DUT/M_RegWrite \
+sim:/cpu_ptb/DUT/M_ALUSrc \
+sim:/cpu_ptb/DUT/M_MemWrite \
+sim:/cpu_ptb/DUT/M_MemtoReg \
+sim:/cpu_ptb/DUT/M_MemRead \
+sim:/cpu_ptb/DUT/M_Pcs \
+sim:/cpu_ptb/DUT/M_hlt \
+sim:/cpu_ptb/DUT/M_load_byte \
+sim:/cpu_ptb/DUT/M_sw \
+sim:/cpu_ptb/DUT/W_RegWrite \
+sim:/cpu_ptb/DUT/W_ALUSrc \
+sim:/cpu_ptb/DUT/W_MemWrite \
+sim:/cpu_ptb/DUT/W_MemtoReg \
+sim:/cpu_ptb/DUT/W_MemRead \
+sim:/cpu_ptb/DUT/W_Pcs \
+sim:/cpu_ptb/DUT/W_hlt \
+sim:/cpu_ptb/DUT/W_load_byte \
+sim:/cpu_ptb/DUT/W_sw \
+sim:/cpu_ptb/DUT/W_RegWrite2 \
+sim:/cpu_ptb/DUT/M_MemRead2 \
+sim:/cpu_ptb/DUT/M_MemWrite2 \
+sim:/cpu_ptb/DUT/ID_Instruction \
+sim:/cpu_ptb/DUT/D_Nxt_Pc \
+sim:/cpu_ptb/DUT/X_Nxt_Pc \
+sim:/cpu_ptb/DUT/M_Nxt_Pc \
+sim:/cpu_ptb/DUT/W_Nxt_Pc \
+sim:/cpu_ptb/DUT/X_X_forward_op1 \
+sim:/cpu_ptb/DUT/X_X_forward_op2 \
+sim:/cpu_ptb/DUT/M_X_forward_op1 \
+sim:/cpu_ptb/DUT/M_X_forward_op2 \
+sim:/cpu_ptb/DUT/M_M_forward \
+sim:/cpu_ptb/DUT/Ld_Stall \
+sim:/cpu_ptb/DUT/cond_met
+restart
+# Closing VCD file "dump.vcd"
+# ** Note: (vsim-8009) Loading existing optimized design _opt3
+# Loading work.cpu_ptb(fast)
+# Loading work.cpu(fast)
+# Loading work.memory1c(fast)
+# Loading work.Add_Sub_16bit(fast)
+# Loading work.CLA4(fast)
+# Loading work.RegisterFile(fast)
+# Loading work.ReadDecoder_4_16(fast)
+# Loading work.WriteDecoder_4_16(fast)
+# Loading work.control_signals(fast)
+# Loading work.PC_control(fast)
+# Loading work.ID_EXRegister(fast)
+# Loading work.dff(fast)
+# Loading work.ALU(fast)
+# Loading work.RED(fast)
+# Loading work.Shifter(fast)
+# Loading work.PSA_16bit(fast)
+# Loading work.EX_MEMRegister(fast)
+# Loading work.MEM_WBRegister(fast)
+# Loading work.Register(fast)
+# Loading work.BitCell(fast)
+run -all
+# Hello world...simulation starting
+# See verilogsim.plog and verilogsim.ptrace for output
+# ** Note: $finish    : I:/ece552/552Project/project-phase2-testbench.v(123)
+#    Time: 1705 ns  Iteration: 0  Instance: /cpu_ptb
+# 1
+# Break in Module cpu_ptb at I:/ece552/552Project/project-phase2-testbench.v line 123
+quit -sim
+# End time: 12:30:11 on Apr 06,2024, Elapsed time: 1:16:41
+# Errors: 0, Warnings: 2
+vsim -voptargs=+acc work.cpu_ptb
+# vsim -voptargs="+acc" work.cpu_ptb 
+# Start time: 12:30:34 on Apr 06,2024
+# ** Note: (vsim-8009) Loading existing optimized design _opt3
+# Loading work.cpu_ptb(fast)
+# Loading work.cpu(fast)
+# Loading work.memory1c(fast)
+# Loading work.Add_Sub_16bit(fast)
+# Loading work.CLA4(fast)
+# Loading work.RegisterFile(fast)
+# Loading work.ReadDecoder_4_16(fast)
+# Loading work.WriteDecoder_4_16(fast)
+# Loading work.control_signals(fast)
+# Loading work.PC_control(fast)
+# Loading work.ID_EXRegister(fast)
+# Loading work.dff(fast)
+# Loading work.ALU(fast)
+# Loading work.RED(fast)
+# Loading work.Shifter(fast)
+# Loading work.PSA_16bit(fast)
+# Loading work.EX_MEMRegister(fast)
+# Loading work.MEM_WBRegister(fast)
+# Loading work.Register(fast)
+# Loading work.BitCell(fast)
+add wave -position insertpoint sim:/cpu_ptb/DUT/*
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: esparzadiaz  Hostname: WIN-1017  ProcessID: 17500
+#           Attempting to use alternate WLF file "./wlfti4604d".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlfti4604d
+run -all
+# Hello world...simulation starting
+# See verilogsim.plog and verilogsim.ptrace for output
+# ** Note: $finish    : I:/ece552/552Project/project-phase2-testbench.v(123)
+#    Time: 1705 ns  Iteration: 0  Instance: /cpu_ptb
+# 1
+# Break in Module cpu_ptb at I:/ece552/552Project/project-phase2-testbench.v line 123
+# Can't move the Now cursor.
+# Can't move the Now cursor.
+# Compile of cpu.v was successful.
+restart
+# Closing VCD file "dump.vcd"
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading work.cpu_ptb(fast)
+# Loading work.cpu(fast)
+# Loading work.memory1c(fast)
+# Loading work.Add_Sub_16bit(fast)
+# Loading work.CLA4(fast)
+# Loading work.RegisterFile(fast)
+# Loading work.ReadDecoder_4_16(fast)
+# Loading work.WriteDecoder_4_16(fast)
+# Loading work.control_signals(fast)
+# Loading work.PC_control(fast)
+# Loading work.ID_EXRegister(fast)
+# Loading work.dff(fast)
+# Loading work.ALU(fast)
+# Loading work.RED(fast)
+# Loading work.Shifter(fast)
+# Loading work.PSA_16bit(fast)
+# Loading work.EX_MEMRegister(fast)
+# Loading work.MEM_WBRegister(fast)
+# Loading work.Register(fast)
+# Loading work.BitCell(fast)
+run -all
+# Hello world...simulation starting
+# See verilogsim.plog and verilogsim.ptrace for output
+# ** Note: $finish    : I:/ece552/552Project/project-phase2-testbench.v(123)
+#    Time: 2705 ns  Iteration: 0  Instance: /cpu_ptb
+# 1
+# Break in Module cpu_ptb at I:/ece552/552Project/project-phase2-testbench.v line 123
+# Compile of cpu.v was successful.
+# Load canceled
+# Compile of cpu.v was successful.
+restart
+# Closing VCD file "dump.vcd"
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading work.cpu_ptb(fast)
+# Loading work.cpu(fast)
+# Loading work.memory1c(fast)
+# Loading work.Add_Sub_16bit(fast)
+# Loading work.CLA4(fast)
+# Loading work.RegisterFile(fast)
+# Loading work.ReadDecoder_4_16(fast)
+# Loading work.WriteDecoder_4_16(fast)
+# Loading work.control_signals(fast)
+# Loading work.PC_control(fast)
+# Loading work.ID_EXRegister(fast)
+# Loading work.dff(fast)
+# Loading work.ALU(fast)
+# Loading work.RED(fast)
+# Loading work.Shifter(fast)
+# Loading work.PSA_16bit(fast)
+# Loading work.EX_MEMRegister(fast)
+# Loading work.MEM_WBRegister(fast)
+# Loading work.Register(fast)
+# Loading work.BitCell(fast)
+# Warning in wave window restart: (vish-4014) No objects found matching '/cpu_ptb/DUT/X_Haz_ALUout'. 
+# Warning in wave window restart: (vish-4014) No objects found matching '/cpu_ptb/DUT/X_Haz_ALU_In2'. 
+# Warning in wave window restart: (vish-4014) No objects found matching '/cpu_ptb/DUT/X_Haz_Nxt_Pc'. 
+# Warning in wave window restart: (vish-4014) No objects found matching '/cpu_ptb/DUT/X_Haz_RegWrite'. 
+# Warning in wave window restart: (vish-4014) No objects found matching '/cpu_ptb/DUT/X_Haz_MemWrite'. 
+# Warning in wave window restart: (vish-4014) No objects found matching '/cpu_ptb/DUT/X_Haz_MemtoReg'. 
+# Warning in wave window restart: (vish-4014) No objects found matching '/cpu_ptb/DUT/X_Haz_MemRead'. 
+# Warning in wave window restart: (vish-4014) No objects found matching '/cpu_ptb/DUT/X_Haz_Pcs'. 
+# Warning in wave window restart: (vish-4014) No objects found matching '/cpu_ptb/DUT/X_Haz_load_byte'. 
+# Warning in wave window restart: (vish-4014) No objects found matching '/cpu_ptb/DUT/X_Haz_sw'. 
+run -all
+# Hello world...simulation starting
+# See verilogsim.plog and verilogsim.ptrace for output
+# Compile of cpu.v was successful.
+restart
+# Closing VCD file "dump.vcd"
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading work.cpu_ptb(fast)
+# Loading work.cpu(fast)
+# Loading work.memory1c(fast)
+# Loading work.Add_Sub_16bit(fast)
+# Loading work.CLA4(fast)
+# Loading work.RegisterFile(fast)
+# Loading work.ReadDecoder_4_16(fast)
+# Loading work.WriteDecoder_4_16(fast)
+# Loading work.control_signals(fast)
+# Loading work.PC_control(fast)
+# Loading work.ID_EXRegister(fast)
+# Loading work.dff(fast)
+# Loading work.ALU(fast)
+# Loading work.RED(fast)
+# Loading work.Shifter(fast)
+# Loading work.PSA_16bit(fast)
+# Loading work.EX_MEMRegister(fast)
+# Loading work.MEM_WBRegister(fast)
+# Loading work.Register(fast)
+# Loading work.BitCell(fast)
+run -all
+# Hello world...simulation starting
+# See verilogsim.plog and verilogsim.ptrace for output
+# Compile of cpu.v was successful.
+restart
+# Closing VCD file "dump.vcd"
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading work.cpu_ptb(fast)
+# Loading work.cpu(fast)
+# Loading work.memory1c(fast)
+# Loading work.Add_Sub_16bit(fast)
+# Loading work.CLA4(fast)
+# Loading work.RegisterFile(fast)
+# Loading work.ReadDecoder_4_16(fast)
+# Loading work.WriteDecoder_4_16(fast)
+# Loading work.control_signals(fast)
+# Loading work.PC_control(fast)
+# Loading work.ID_EXRegister(fast)
+# Loading work.dff(fast)
+# Loading work.ALU(fast)
+# Loading work.RED(fast)
+# Loading work.Shifter(fast)
+# Loading work.PSA_16bit(fast)
+# Loading work.EX_MEMRegister(fast)
+# Loading work.MEM_WBRegister(fast)
+# Loading work.Register(fast)
+# Loading work.BitCell(fast)
+run -all
+# Hello world...simulation starting
+# See verilogsim.plog and verilogsim.ptrace for output
+# ** Note: $finish    : I:/ece552/552Project/project-phase2-testbench.v(123)
+#    Time: 1705 ns  Iteration: 0  Instance: /cpu_ptb
+# 1
+# Break in Module cpu_ptb at I:/ece552/552Project/project-phase2-testbench.v line 123
+# Compile of cpu.v was successful.
+restart
+# Closing VCD file "dump.vcd"
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading work.cpu_ptb(fast)
+# Loading work.cpu(fast)
+# Loading work.memory1c(fast)
+# Loading work.Add_Sub_16bit(fast)
+# Loading work.CLA4(fast)
+# Loading work.RegisterFile(fast)
+# Loading work.ReadDecoder_4_16(fast)
+# Loading work.WriteDecoder_4_16(fast)
+# Loading work.control_signals(fast)
+# Loading work.PC_control(fast)
+# Loading work.ID_EXRegister(fast)
+# Loading work.dff(fast)
+# Loading work.ALU(fast)
+# Loading work.RED(fast)
+# Loading work.Shifter(fast)
+# Loading work.PSA_16bit(fast)
+# Loading work.EX_MEMRegister(fast)
+# Loading work.MEM_WBRegister(fast)
+# Loading work.Register(fast)
+# Loading work.BitCell(fast)
+run -continue
+# Hello world...simulation starting
+# See verilogsim.plog and verilogsim.ptrace for output
+# ** Note: $finish    : I:/ece552/552Project/project-phase2-testbench.v(123)
+#    Time: 2705 ns  Iteration: 0  Instance: /cpu_ptb
+# 1
+# Break in Module cpu_ptb at I:/ece552/552Project/project-phase2-testbench.v line 123
+# Compile of cpu.v was successful.
+restart
+# Closing VCD file "dump.vcd"
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading work.cpu_ptb(fast)
+# Loading work.cpu(fast)
+# Loading work.memory1c(fast)
+# Loading work.Add_Sub_16bit(fast)
+# Loading work.CLA4(fast)
+# Loading work.RegisterFile(fast)
+# Loading work.ReadDecoder_4_16(fast)
+# Loading work.WriteDecoder_4_16(fast)
+# Loading work.control_signals(fast)
+# Loading work.PC_control(fast)
+# Loading work.ID_EXRegister(fast)
+# Loading work.dff(fast)
+# Loading work.ALU(fast)
+# Loading work.RED(fast)
+# Loading work.Shifter(fast)
+# Loading work.PSA_16bit(fast)
+# Loading work.EX_MEMRegister(fast)
+# Loading work.MEM_WBRegister(fast)
+# Loading work.Register(fast)
+# Loading work.BitCell(fast)
+run -all
+# Hello world...simulation starting
+# See verilogsim.plog and verilogsim.ptrace for output
+# ** Note: $finish    : I:/ece552/552Project/project-phase2-testbench.v(123)
+#    Time: 2705 ns  Iteration: 0  Instance: /cpu_ptb
+# 1
+# Break in Module cpu_ptb at I:/ece552/552Project/project-phase2-testbench.v line 123
+# Compile of cpu.v was successful.
+restart
+# Closing VCD file "dump.vcd"
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading work.cpu_ptb(fast)
+# Loading work.cpu(fast)
+# Loading work.memory1c(fast)
+# Loading work.Add_Sub_16bit(fast)
+# Loading work.CLA4(fast)
+# Loading work.RegisterFile(fast)
+# Loading work.ReadDecoder_4_16(fast)
+# Loading work.WriteDecoder_4_16(fast)
+# Loading work.control_signals(fast)
+# Loading work.PC_control(fast)
+# Loading work.ID_EXRegister(fast)
+# Loading work.dff(fast)
+# Loading work.ALU(fast)
+# Loading work.RED(fast)
+# Loading work.Shifter(fast)
+# Loading work.PSA_16bit(fast)
+# Loading work.EX_MEMRegister(fast)
+# Loading work.MEM_WBRegister(fast)
+# Loading work.Register(fast)
+# Loading work.BitCell(fast)
+# Warning in wave window restart: (vish-4014) No objects found matching '/cpu_ptb/DUT/X_Haz_hlt'. 
+run -all
+# Hello world...simulation starting
+# See verilogsim.plog and verilogsim.ptrace for output
+# ** Note: $finish    : I:/ece552/552Project/project-phase2-testbench.v(123)
+#    Time: 2705 ns  Iteration: 0  Instance: /cpu_ptb
+# 1
+# Break in Module cpu_ptb at I:/ece552/552Project/project-phase2-testbench.v line 123
+restart
+# Closing VCD file "dump.vcd"
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-8009) Loading existing optimized design _opt3
+# Loading work.cpu_ptb(fast)
+# Loading work.cpu(fast)
+# Loading work.memory1c(fast)
+# Loading work.Add_Sub_16bit(fast)
+# Loading work.CLA4(fast)
+# Loading work.RegisterFile(fast)
+# Loading work.ReadDecoder_4_16(fast)
+# Loading work.WriteDecoder_4_16(fast)
+# Loading work.control_signals(fast)
+# Loading work.PC_control(fast)
+# Loading work.ID_EXRegister(fast)
+# Loading work.dff(fast)
+# Loading work.ALU(fast)
+# Loading work.RED(fast)
+# Loading work.Shifter(fast)
+# Loading work.PSA_16bit(fast)
+# Loading work.EX_MEMRegister(fast)
+# Loading work.MEM_WBRegister(fast)
+# Loading work.Register(fast)
+# Loading work.BitCell(fast)
+run -all
+# Hello world...simulation starting
+# See verilogsim.plog and verilogsim.ptrace for output
+# ** Note: $finish    : I:/ece552/552Project/project-phase2-testbench.v(123)
+#    Time: 2705 ns  Iteration: 0  Instance: /cpu_ptb
+# 1
+# Break in Module cpu_ptb at I:/ece552/552Project/project-phase2-testbench.v line 123
+# Compile of Memory.v was successful.
+restart
+# Closing VCD file "dump.vcd"
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading work.cpu_ptb(fast)
+# Loading work.cpu(fast)
+# Loading work.memory1c(fast)
+# Loading work.Add_Sub_16bit(fast)
+# Loading work.CLA4(fast)
+# Loading work.RegisterFile(fast)
+# Loading work.ReadDecoder_4_16(fast)
+# Loading work.WriteDecoder_4_16(fast)
+# Loading work.control_signals(fast)
+# Loading work.PC_control(fast)
+# Loading work.ID_EXRegister(fast)
+# Loading work.dff(fast)
+# Loading work.ALU(fast)
+# Loading work.RED(fast)
+# Loading work.Shifter(fast)
+# Loading work.PSA_16bit(fast)
+# Loading work.EX_MEMRegister(fast)
+# Loading work.MEM_WBRegister(fast)
+# Loading work.Register(fast)
+# Loading work.BitCell(fast)
+run -all
+# Hello world...simulation starting
+# See verilogsim.plog and verilogsim.ptrace for output
+# ** Note: $finish    : I:/ece552/552Project/project-phase2-testbench.v(123)
+#    Time: 1905 ns  Iteration: 0  Instance: /cpu_ptb
+# 1
+# Break in Module cpu_ptb at I:/ece552/552Project/project-phase2-testbench.v line 123
+# Compile of cpu.v was successful.
+vsim -voptargs=+acc work.cpu_ptb
+# End time: 13:22:32 on Apr 06,2024, Elapsed time: 0:51:58
+# Errors: 0, Warnings: 2
+# vsim -voptargs="+acc" work.cpu_ptb 
+# Start time: 13:22:32 on Apr 06,2024
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading work.cpu_ptb(fast)
+# Loading work.cpu(fast)
+# Loading work.memory1c(fast)
+# Loading work.Add_Sub_16bit(fast)
+# Loading work.CLA4(fast)
+# Loading work.RegisterFile(fast)
+# Loading work.ReadDecoder_4_16(fast)
+# Loading work.WriteDecoder_4_16(fast)
+# Loading work.control_signals(fast)
+# Loading work.PC_control(fast)
+# Loading work.ID_EXRegister(fast)
+# Loading work.dff(fast)
+# Loading work.ALU(fast)
+# Loading work.RED(fast)
+# Loading work.Shifter(fast)
+# Loading work.PSA_16bit(fast)
+# Loading work.EX_MEMRegister(fast)
+# Loading work.MEM_WBRegister(fast)
+# Loading work.Register(fast)
+# Loading work.BitCell(fast)
+run -all
+# Hello world...simulation starting
+# See verilogsim.plog and verilogsim.ptrace for output
+# ** Note: $finish    : I:/ece552/552Project/project-phase2-testbench.v(123)
+#    Time: 1905 ns  Iteration: 0  Instance: /cpu_ptb
+# 1
+# Break in Module cpu_ptb at I:/ece552/552Project/project-phase2-testbench.v line 123
+# Compile of cpu.v was successful.
+# Compile of Memory.v was successful.
+restart
+# Closing VCD file "dump.vcd"
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading work.cpu_ptb(fast)
+# Loading work.cpu(fast)
+# Loading work.memory1c(fast)
+# Loading work.Add_Sub_16bit(fast)
+# Loading work.CLA4(fast)
+# Loading work.RegisterFile(fast)
+# Loading work.ReadDecoder_4_16(fast)
+# Loading work.WriteDecoder_4_16(fast)
+# Loading work.control_signals(fast)
+# Loading work.PC_control(fast)
+# Loading work.ID_EXRegister(fast)
+# Loading work.dff(fast)
+# Loading work.ALU(fast)
+# Loading work.RED(fast)
+# Loading work.Shifter(fast)
+# Loading work.PSA_16bit(fast)
+# Loading work.EX_MEMRegister(fast)
+# Loading work.MEM_WBRegister(fast)
+# Loading work.Register(fast)
+# Loading work.BitCell(fast)
+run -all
+# Hello world...simulation starting
+# See verilogsim.plog and verilogsim.ptrace for output
+# ** Note: $finish    : I:/ece552/552Project/project-phase2-testbench.v(123)
+#    Time: 1705 ns  Iteration: 0  Instance: /cpu_ptb
+# 1
+# Break in Module cpu_ptb at I:/ece552/552Project/project-phase2-testbench.v line 123

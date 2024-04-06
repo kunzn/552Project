@@ -1,5 +1,7 @@
 
 module EX_MEMRegister(
+  input clk,
+  input rst_n,
   input [3:0] X_Destination,
   input [15:0] X_ALUout,
   input [15:0] X_WriteData,
