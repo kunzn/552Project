@@ -48,8 +48,25 @@ assign M_M_forward = (W_RegWrite ? (W_Destination ? (~M_load_byte ? (W_Destinati
 assign Ld_Stall = (X_MemRead & ~X_MemWrite ? (X_Destination ? ((X_Destination == SrcReg1) | ((X_Destination == SrcReg2) & ~D_MemWrite & ~D_ALUSrc) ? 1'b1 : 1'b0) : 1'b0) : 1'b0);
 
 
-//IF Stage
-memory1c iMemory(.data_out(instruction), .data_in(16'b0), .addr(pc), .enable(1'b1), .wr(1'b0), .clk(clk), .rst(~rst_n));
+//IF Stage  --- Initialize iCache, cache controller, iMem
+wire [15:0] I_memory_address, memory_data_out, I_cache_data_out, I_data_in;
+wire I_miss, I_fsm_busy, I_memory_data_valid, I_write_tag_array, I_memory_data_valid, I_memory_wr, I_memory_enable;
+
+// MODIFICATIONS: cache fsm, icachem Memory enable depends on cache misses. PC stays the same when fsm busy. Instruction depends on what we read from cache or memory if cache miss else 0 for nop after cache miss. ;
+assign I_data_in = 16'b0;
+assign I_memory_wr = 1'b0;
+assign I_memory_enable = (I_miss & ~I_fsm_busy) | (I_memory_data_valid & ~I_write_tag_array)
+//memory4c iMemory(.data_out(memory_data_out), .data_in(I_data_in), .addr(I_memory_address), .enable(I_memory_enable), .wr(1'b0), .clk(clk), .rst(~rst_n), .data_valid(memory_data_valid));
+
+// Main memory initialization 
+memory4c iMemory(.data_out(memory_data_out), .data_in(I_data_in), .addr(I_memory_address), .enable(I_memory_enable), .wr(I_memory_wr), .clk(clk), .rst(~rst_n), .data_valid(memory_data_valid));
+cache_fill_FSM icache_fsm(.clk(clk), .rst_n(rst_n), .miss_detected(I_miss & ~I_fsm_busy), .miss_address(addr), .memory_address(I_memory_address), .fsm_busy(I_fsm_busy), .write_data_array(I_write_tag_array), .write_tag_array(I_write_tag_array);
+
+
+cache icache(.clk(clk), .rst(~rst_n), .memory_address(I_memory_address), .memory_data_out(memory_data_out), .addr(pc), .write_data_array(), .write_tag_array(), .write_enable(), .data_write(memory_data_out), .fsm_busy(fsm_busy), .data_word(cache_data_out), .miss());
+
+assign instruction = data_word;
+
 Add_Sub_16bit adder(.A(pc), .B(16'h0002), .sub(1'b0), .Sum(nxt_pc), .Ovfl(Ovfl));
 
 //IF/ID registers {instruction, pc + 4}
@@ -145,7 +162,7 @@ ID_EXRegister ID_EX(
   .X_sw(X_sw)
 );
 
-assign PCSrcMux = (cond_met & PCSrc) ? br_pc : &instruction[15:12] ? pc : Ld_Stall ? pc : nxt_pc;
+assign PCSrcMux = fsm_busy ? pc : (cond_met & PCSrc) ? br_pc : &instruction[15:12] ? pc : Ld_Stall ? pc : nxt_pc;
 
 //EX Stage
 ALU alu(.ALU_In1(X_ALU_In1), .ALU_In2(ALUSrcMux), .Opcode(X_Opcode), .ALU_Out(X_ALUout), .F(F), .rst(~rst_n), .clk(clk));
@@ -186,7 +203,16 @@ EX_MEMRegister EX_MEM(
 
 // MEM Stage
 assign M_Data_In = M_M_forward ? W_MemData : M_WriteData;
-memory1c dMemory(.data_out(M_MemData), .data_in(M_Data_In), .addr(M_ALUout), .enable(M_MemRead2), .wr(M_MemWrite2), .clk(clk), .rst(~rst_n));
+
+// M_MemWrite2 needs to stall 
+I_cache dcache(.clk(clk), .rst(~rst_n), .instruction(M_ALUout), .write_enable(M_MemWrite2),.data_write(memory_data_out),.miss(miss_detected),.data_word(cache_data_out));
+memory4c dMemory(.data_out(M_MemData), .data_in(M_Data_In), .addr(), .enable(miss_detected), .wr(~miss_detected & M_MemWrite2), .clk(clk), .rst(~rst_n));
+
+// MODIFICATIONS: cache fsm, icachem Memory enable depends on cache misses. PC stays the same when fsm busy. Instruction depends on what we read from cache or memory if cache miss else 0 for nop after cache miss. 
+
+memory4c iMemory(.data_out(memory_data_out), .data_in(16'b0), .addr(memory_address), .enable(miss_detected | (memory_data_valid & ~write_tag_array)), .wr(1'b0), .clk(clk), .rst(~rst_n), .data_valid(memory_data_valid));
+cache_fill_FSM icache_fsm(.clk(clk), .rst_n(rst_n), .miss_detected(miss_detected), .miss_address(pc), .fsm_busy(fsm_busy), .write_data_array(write_data_array), .write_tag_array(write_tag_array) , .memory_address(memory_address), .memory_data_valid(memory_data_valid));
+
 
 MEM_WBRegister MEM_WB(
   .clk(clk),
