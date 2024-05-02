@@ -15,7 +15,7 @@ input memory_data_valid; // active high indicates valid data returning on memory
   wire [2:0] curr_word_count, nxt_word_count;
   wire [1:0] curr_mem_latency, nxt_mem_latency;
   wire state;
-  wire read_from_mem, nxt_read_from_mem;
+  //wire read_from_mem, nxt_read_from_mem;
 
   // Adders to add one to counters
   CLA4 cla4_word_count(.A({1'b0, curr_word_count}), .B(4'b0001), .Cin(1'b0), .Sum(nxt_word_count), .Ovfl(), .Cout());
@@ -32,8 +32,8 @@ input memory_data_valid; // active high indicates valid data returning on memory
  // assign nxt_read_from_mem = (~state) ? 1'b0 : memory_data_valid ? 1'b1 : read_from_mem; 
 
   assign fsm_busy = state;
-  assign write_data_array = memory_data_valid; // write to cache when mem_latency is fully read
-  assign write_tag_array = &(curr_word_count); // all 8 words have been read
+  assign write_data_array = memory_data_valid & fsm_busy; // write to cache when mem_latency is fully read
+  assign write_tag_array = &(curr_word_count) & memory_data_valid; // all 8 words have been read
   assign memory_address = {miss_address[15:4], curr_word_count, 1'b0};
 
 endmodule
