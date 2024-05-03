@@ -204,7 +204,7 @@ ID_EXRegister ID_EX(
   .X_sw(X_sw)
 );
 
-assign PCSrcMux = I_fsm_busy | D_fsm_busy ? pc : (cond_met & PCSrc) ? br_pc : &I_cache_data_out[15:12] ? pc : Ld_Stall ? pc : nxt_pc;
+assign PCSrcMux = I_fsm_busy | D_fsm_busy | I_miss | write_state ? pc : (cond_met & PCSrc) ? br_pc : &I_cache_data_out[15:12] ? pc : Ld_Stall ? pc : nxt_pc;
 
 //EX Stage
 ALU alu(.ALU_In1(X_ALU_In1), .ALU_In2(ALUSrcMux), .Opcode(X_Opcode), .ALU_Out(X_ALUout), .F(F), .rst(~rst_n), .clk(clk));
@@ -261,15 +261,16 @@ EX_MEMRegister EX_MEM(
 
 // MEM Stage
 // pipelined cache write - pass directly into the cache. Hit? change in cache and mem ; else you want to take the dff cache write; 
-dff write_enable(.q(flopped_write_enable), .d(M_MemWrite2), .wen(~D_fsm_busy), .clk(clk), .rst(~rst_n));
+//dff write_enable(.q(flopped_write_enable), .d(M_MemWrite2), .wen(~D_fsm_busy), .clk(clk), .rst(~rst_n));
 
 
-assign D_write_enable = D_fsm_busy ? 1'b0 : write_tag_array ? flopped_write_enable : M_MemWrite2;
+//assign D_write_enable = D_fsm_busy ? 1'b0 : write_tag_array ? flopped_write_enable : M_MemWrite2;
+assign D_write_enable = M_MemWrite2;
 assign M_Data_In = M_M_forward ? W_MemData : M_WriteData;
 // Go high when M_MemWrite2 & miss, go back low once D_write_tag_array
 // const assign write enable choosing flopped enable or the current value of M_MemWrite2 based on miss status
 // D Cache
-cache_fill_FSM dcache_fsm(.clk(clk), .rst_n(rst_n), .miss_detected(D_miss & ~D_fsm_busy & (M_MemRead | M_MemWrite2)), .miss_address(M_ALUout), .memory_address(D_memory_address), .fsm_busy(D_fsm_busy), .write_data_array(D_write_data_array), .write_tag_array(D_write_tag_array), .memory_data_valid(I_memory_data_valid));
+cache_fill_FSM dcache_fsm(.clk(clk), .rst_n(rst_n), .miss_detected(D_miss & ~D_fsm_busy & (M_MemRead | M_MemWrite2)), .miss_address(M_ALUout), .memory_address(D_memory_address), .fsm_busy(D_fsm_busy), .write_data_array(D_write_data_array), .write_tag_array(D_write_tag_array), .memory_data_valid(D_memory_data_valid));
 cache dcache(
 	.clk(clk), 
 	.rst(~rst_n), 

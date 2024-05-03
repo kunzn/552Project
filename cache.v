@@ -20,9 +20,9 @@ wire [3:0] offset;
 wire [63:0] BlockEnable, shift1, shift2, shift3, shift4, shift5;
 wire [7:0] MetaDataOut1, MetaDataOut2, MetaDataIn1, MetaDataIn2, MetaDataOut_1, MetaDataOut_2;
 wire [15:0] DataOut1, DataOut2, CacheDataIn1, CacheDataIn2, next_addr;
-wire [ 7:0] WordEnable, shift1_we, shift2_we;
+wire [7:0] WordEnable, shift1_we, shift2_we;
 wire hit1, hit2, write_en_data_1, write_en_data_2, data_write_block, write_hit, write_hit_1, write_hit_2;
-wire read_state;
+wire read_state, nxt_write_stage;
 
 // Abstract info from instruction
 assign tag = (fsm_busy) ? memory_address[15:10] : write_tag_array | write_state ? next_addr[15:10] : addr[15:10];
@@ -31,8 +31,9 @@ assign offset = (fsm_busy) ? memory_address[3:0] : write_tag_array | write_state
 
 dff og_address[15:0](.q(next_addr), .d(addr), .wen(~fsm_busy), .clk(clk), .rst(rst));
 
-assign read_state = read | write_enable;
-dff write_state_(.q(write_state), .d(read_state), .wen(~fsm_busy), .clk(clk), .rst(rst));
+assign read_state = (read | write_enable) & ~write_state;
+assign nxt_write_stage = write_tag_array ? 1'b0 : read_state;
+dff write_state_(.q(write_state), .d(nxt_write_stage), .wen(~fsm_busy | write_tag_array), .clk(clk), .rst(rst));
 
 DataArray DataArray_1(.clk(clk), .rst(rst), .DataIn(CacheDataIn1), .Write(write_en_data_1), .BlockEnable(BlockEnable), .WordEnable(WordEnable), .DataOut(DataOut1));
 DataArray DataArray_2(.clk(clk), .rst(rst), .DataIn(CacheDataIn2), .Write(write_en_data_2), .BlockEnable(BlockEnable), .WordEnable(WordEnable), .DataOut(DataOut2));
@@ -72,7 +73,7 @@ assign miss = (read_state) ? ~(hit1 | hit2) : 1'b0;
 assign data_write_block = ~MetaDataOut1[1] ? 1'b0  : ~MetaDataOut2[1] ? 1'b1 : MetaDataOut1[0] ? 1'b0 : 1'b1;
 dff block(.q(write_block), .d(data_write_block), .wen(read_state), .clk(clk), .rst(rst));
 
-assign write_hit = (hit1 | hit2) & write_enable;
+assign write_hit = read_state ? ((hit1 | hit2) & write_enable) : 1'b0;
 dff write_hit_(.q(write_hit_2), .d(write_hit), .wen(read_state), .clk(clk), .rst(rst));
 
 // Only write when enable is high
@@ -88,6 +89,6 @@ assign CacheDataIn2 = write_en_data_2 ? (write_hit_2) ? data_write : memory_data
 // Assign outputs, miss only high when reading (and miss) - ignore data word output if writing
  // & ~write_enable;\
 
-assign data_word = hit1 ? DataOut1 : hit2 ? DataOut2 : 16'b0; // Is memory_data_out what we want at this point
+assign data_word = hit1 & read_state ? DataOut1 : hit2 & read_state ? DataOut2 : 16'b0; // Is memory_data_out what we want at this point
 
 endmodule
