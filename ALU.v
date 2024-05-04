@@ -19,10 +19,14 @@ module ALU (
   wire adder_ovfl;
   wire passdb_ovfl;
   reg V_en, N_en, Z_en, V, N, Z;
+  wire [2:0] F_ff;
 
-  dff V_flag(.q(F[2]), .d(V), .wen(V_en), .clk(clk), .rst(rst));
-  dff N_flag(.q(F[1]), .d(N), .wen(N_en), .clk(clk), .rst(rst));
-  dff Z_flag(.q(F[0]), .d(Z), .wen(Z_en), .clk(clk), .rst(rst));
+  dff V_flag(.q(F_ff[2]), .d(V), .wen(V_en), .clk(clk), .rst(rst));
+  dff N_flag(.q(F_ff[1]), .d(N), .wen(N_en), .clk(clk), .rst(rst));
+  dff Z_flag(.q(F_ff[0]), .d(Z), .wen(Z_en), .clk(clk), .rst(rst));
+  assign F[2] = (V_en) ? V : F_ff[2];
+  assign F[1] = (N_en) ? N : F_ff[1];
+  assign F[0] = (Z_en) ? Z : F_ff[0];
 
   // add: rs + rt 
   Add_Sub_16bit adder(.A(Adder_In_1), .B(Adder_In_2), .sub(sub), .Sum(adder_output), .Ovfl(adder_ovfl));

@@ -29,6 +29,7 @@ wire W_RegWrite, W_ALUSrc, W_MemWrite, W_MemtoReg, W_MemRead, W_Pcs, W_hlt, W_lo
 wire X_Stall_RegWrite, X_Stall_MemWrite, X_Stall_MemtoReg, X_Stall_MemRead, X_Stall_Pcs, X_Stall_hlt, X_Stall_load_byte, X_Stall_sw;
 wire [3:0] X_Stall_Destination;
 wire [15:0] X_Stall_ALUout, X_Stall_WriteData, X_Stall_Nxt_Pc;
+wire I_mem_en, D_mem_en, stall_everything;
 
 wire W_RegWrite2, M_MemRead2, M_MemWrite2;
 //IF/ID
@@ -80,10 +81,10 @@ assign I_memory_enable = (I_miss & ~I_fsm_busy) | (I_fsm_busy & ~I_write_tag_arr
 memory4c iMemory(.data_out(memory_data_out), .data_in(Mem_In), .addr(Mem_Addr), .enable(Mem_En), .wr(Mem_Wr), .clk(clk), .rst(~rst_n), .data_valid(memory_data_valid));
 
 // Prioritize ICache misses?
-assign Mem_In = D_fsm_busy | D_write_enable ? D_data_in : (I_miss | I_fsm_busy) ? I_data_in :  16'b0;
-assign Mem_Addr = D_fsm_busy | D_write_enable ? D_memory_address : (I_miss | I_fsm_busy) ? I_memory_address : 16'b0;
-assign Mem_En = (~rst_n) ? 1'b0 : D_fsm_busy | D_write_enable ? M_MemRead : I_fsm_busy;
-assign Mem_Wr = ~D_fsm_busy & D_write_enable ? 1'b1 : (I_miss | I_fsm_busy) ? I_memory_wr : 1'b0;
+assign Mem_In = D_fsm_busy | D_write_enable & ~stall_everything ? D_data_in : (I_miss | I_fsm_busy) ? I_data_in :  16'b0;
+assign Mem_Addr = D_fsm_busy | D_write_enable & ~ stall_everything ? D_memory_address : (I_miss | I_fsm_busy) ? I_memory_address : 16'b0;
+assign Mem_En = (~rst_n) ? 1'b0 : D_mem_en ? M_MemRead : I_fsm_busy ? I_mem_en : 1'b0;
+assign Mem_Wr = ~D_fsm_busy & D_write_enable & ~D_cache_miss & ~stall_everything? 1'b1 : (I_miss | I_fsm_busy) ? I_memory_wr : 1'b0;
 
 assign I_memory_data_out = (I_fsm_busy) ? memory_data_out : 16'b0;
 assign D_memory_data_out = (D_fsm_busy) ? memory_data_out : 16'b0;
@@ -94,7 +95,7 @@ assign D_memory_data_valid = (D_fsm_busy) ? memory_data_valid : 1'b0;
 dff mem_en_dff(.q(Mem_En_FF), .d(Mem_En), .wen(1'b1), .clk(clk), .rst(~rst_n));
 
 // I Cache
-cache_fill_FSM icache_fsm(.clk(clk), .rst_n(rst_n), .miss_detected(I_miss & ~I_fsm_busy & ~D_fsm_busy), .miss_address(pc), .memory_address(I_memory_address), .fsm_busy(I_fsm_busy), .write_data_array(I_write_data_array), .write_tag_array(I_write_tag_array), .memory_data_valid(I_memory_data_valid));
+cache_fill_FSM icache_fsm(.clk(clk), .rst_n(rst_n), .miss_detected(I_miss & ~I_fsm_busy & ~D_fsm_busy), .miss_address(pc), .memory_address(I_memory_address), .fsm_busy(I_fsm_busy), .write_data_array(I_write_data_array), .write_tag_array(I_write_tag_array), .memory_data_valid(I_memory_data_valid), .mem_en(I_mem_en));
 cache icache(
 	.clk(clk), 
 	.rst(~rst_n), 
@@ -113,7 +114,7 @@ cache icache(
 Add_Sub_16bit adder(.A(pc), .B(16'h0002), .sub(1'b0), .Sum(nxt_pc), .Ovfl(Ovfl));
 
 //IF/ID registers {instruction, pc + 4}
-assign next_instr = (cond_met & PCSrc) ? 16'b0 : Ld_Stall | D_fsm_busy | D_cache_miss ? ID_Instruction : I_cache_data_out;
+assign next_instr = (cond_met & PCSrc) ? 16'b0 : Ld_Stall | D_fsm_busy | D_cache_miss | stall_everything ? ID_Instruction : I_cache_data_out;
 dff IF_ID_Instruction[15:0](.q(ID_Instruction), .d(next_instr), .wen(1'b1), .clk(clk), .rst(~rst_n));
 dff IF_ID_PC_ADD[15:0](.q(D_Nxt_Pc), .d(nxt_pc), .wen(1'b1), .clk(clk), .rst(~rst_n));
 
@@ -144,25 +145,25 @@ assign D_Operand2 = ID_Instruction[3:0];
 assign SrcReg1 = D_load_byte ? D_Destination : D_Operand1; 
 assign SrcReg2 = D_sw ? D_Destination : D_Operand2;
 
-assign D_Haz_RegWrite = Ld_Stall ? 1'b0 : D_fsm_busy | D_cache_miss ? X_RegWrite : D_RegWrite;
-assign D_Haz_ALUSrc = Ld_Stall ? 1'b0 : D_fsm_busy | D_cache_miss ? X_ALUSrc : D_ALUSrc;
-assign D_Haz_MemWrite = Ld_Stall ? 1'b0 : D_fsm_busy | D_cache_miss ? X_MemWrite : D_MemWrite;
-assign D_Haz_MemtoReg = Ld_Stall ? 1'b0 : D_fsm_busy | D_cache_miss ? X_MemtoReg : D_MemtoReg;
-assign D_Haz_MemRead = Ld_Stall ? 1'b0 : D_fsm_busy | D_cache_miss ? X_MemRead : D_MemRead;
-assign D_Haz_Pcs = Ld_Stall ? 1'b0 : D_fsm_busy | D_cache_miss? X_Pcs : D_Pcs;
-assign D_Haz_hlt = Ld_Stall ? 1'b0 : D_fsm_busy | D_cache_miss? X_hlt : D_hlt;
-assign D_Haz_load_byte = Ld_Stall ? 1'b0 : D_fsm_busy | D_cache_miss? X_load_byte : D_load_byte;
-assign D_Haz_sw = Ld_Stall ? 1'b0 : D_fsm_busy | D_cache_miss ? X_sw : D_sw;
+assign D_Haz_RegWrite = Ld_Stall ? 1'b0 : D_fsm_busy | D_cache_miss  | stall_everything? X_RegWrite : D_RegWrite;
+assign D_Haz_ALUSrc = Ld_Stall ? 1'b0 : D_fsm_busy | D_cache_miss  | stall_everything? X_ALUSrc : D_ALUSrc;
+assign D_Haz_MemWrite = Ld_Stall ? 1'b0 : D_fsm_busy | D_cache_miss | stall_everything ? X_MemWrite : D_MemWrite;
+assign D_Haz_MemtoReg = Ld_Stall ? 1'b0 : D_fsm_busy | D_cache_miss | stall_everything ? X_MemtoReg : D_MemtoReg;
+assign D_Haz_MemRead = Ld_Stall ? 1'b0 : D_fsm_busy | D_cache_miss  | stall_everything? X_MemRead : D_MemRead;
+assign D_Haz_Pcs = Ld_Stall ? 1'b0 : D_fsm_busy | D_cache_miss | stall_everything? X_Pcs : D_Pcs;
+assign D_Haz_hlt = Ld_Stall ? 1'b0 : D_fsm_busy | D_cache_miss | stall_everything? X_hlt : D_hlt;
+assign D_Haz_load_byte = Ld_Stall ? 1'b0 : D_fsm_busy | D_cache_miss | stall_everything? X_load_byte : D_load_byte;
+assign D_Haz_sw = Ld_Stall ? 1'b0 : D_fsm_busy | D_cache_miss | stall_everything ? X_sw : D_sw;
 
-assign D_Haz_opcode = Ld_Stall ? 4'b0 : D_fsm_busy | D_cache_miss ? X_Opcode : D_Opcode;
-assign D_Haz_Destination = Ld_Stall ? 4'b0 : D_fsm_busy | D_cache_miss? X_Destination :  D_Destination;
-assign D_Haz_Operand1 = Ld_Stall ? 4'b0 : D_fsm_busy | D_cache_miss? X_Operand1 : D_Operand1;
-assign D_Haz_Operand2 = Ld_Stall ? 4'b0 : D_fsm_busy | D_cache_miss? X_Operand2_Mux : D_Operand2;
+assign D_Haz_opcode = Ld_Stall ? 4'b0 : D_fsm_busy | D_cache_miss | stall_everything ? X_Opcode : D_Opcode;
+assign D_Haz_Destination = Ld_Stall ? 4'b0 : D_fsm_busy | D_cache_miss | stall_everything? X_Destination :  D_Destination;
+assign D_Haz_Operand1 = Ld_Stall ? 4'b0 : D_fsm_busy | D_cache_miss | stall_everything? X_Operand1 : D_Operand1;
+assign D_Haz_Operand2 = Ld_Stall ? 4'b0 : D_fsm_busy | D_cache_miss | stall_everything? X_Operand2_Mux : D_Operand2;
 
-assign D_Haz_Operand1_Out = Ld_Stall ? 16'b0 : D_fsm_busy | D_cache_miss? X_Operand1_Out : D_Operand1_Out;
-assign D_Haz_Operand2_Out = Ld_Stall ? 16'b0 : D_fsm_busy | D_cache_miss? X_Operand2_Out : D_Operand2_Out;
+assign D_Haz_Operand1_Out = Ld_Stall ? 16'b0 : D_fsm_busy | D_cache_miss | stall_everything? X_Operand1_Out : D_Operand1_Out;
+assign D_Haz_Operand2_Out = Ld_Stall ? 16'b0 : D_fsm_busy | D_cache_miss | stall_everything? X_Operand2_Out : D_Operand2_Out;
 
-assign D_Haz_Nxt_Pc = Ld_Stall ? 16'b0 : D_fsm_busy | D_cache_miss? X_Nxt_Pc : D_Nxt_Pc;
+assign D_Haz_Nxt_Pc = Ld_Stall ? 16'b0 : D_fsm_busy | D_cache_miss | stall_everything ? X_Nxt_Pc : D_Nxt_Pc;
 
 
 //ID/EX Registers
@@ -215,21 +216,21 @@ assign X_ALU_In1 = X_X_forward_op1 ? M_ALUout : M_X_forward_op1 ? MemtoRegMux : 
 assign X_ALU_In2 = X_X_forward_op2 ? M_ALUout : M_X_forward_op2 ? MemtoRegMux : X_Operand2_Out;
 
 
-assign X_Stall_RegWrite = D_fsm_busy | D_cache_miss ? M_RegWrite : X_RegWrite;
-assign X_Stall_MemWrite = D_fsm_busy | D_cache_miss? M_MemWrite : X_MemWrite;
-assign X_Stall_MemtoReg = D_fsm_busy | D_cache_miss ? M_MemtoReg : X_MemtoReg;
-assign X_Stall_MemRead = D_fsm_busy | D_cache_miss ? M_MemRead : X_MemRead;
-assign X_Stall_Pcs = D_fsm_busy | D_cache_miss ? M_Pcs : X_Pcs;
-assign X_Stall_hlt = D_fsm_busy | D_cache_miss ? M_hlt : X_hlt;
-assign X_Stall_load_byte = D_fsm_busy | D_cache_miss ? M_load_byte : X_load_byte;
-assign X_Stall_sw = D_fsm_busy | D_cache_miss ? M_sw : X_sw;
+assign X_Stall_RegWrite = D_fsm_busy | D_cache_miss | stall_everything ? M_RegWrite : X_RegWrite;
+assign X_Stall_MemWrite = D_fsm_busy | D_cache_miss | stall_everything? M_MemWrite : X_MemWrite;
+assign X_Stall_MemtoReg = D_fsm_busy | D_cache_miss | stall_everything ? M_MemtoReg : X_MemtoReg;
+assign X_Stall_MemRead = D_fsm_busy | D_cache_miss | stall_everything ? M_MemRead : X_MemRead;
+assign X_Stall_Pcs = D_fsm_busy | D_cache_miss | stall_everything ? M_Pcs : X_Pcs;
+assign X_Stall_hlt = D_fsm_busy | D_cache_miss | stall_everything ? M_hlt : X_hlt;
+assign X_Stall_load_byte = D_fsm_busy | D_cache_miss | stall_everything ? M_load_byte : X_load_byte;
+assign X_Stall_sw = D_fsm_busy | D_cache_miss | stall_everything ? M_sw : X_sw;
 
-assign X_Stall_Destination = D_fsm_busy | D_cache_miss ? M_Destination : X_Destination;
+assign X_Stall_Destination = D_fsm_busy | D_cache_miss | stall_everything ? M_Destination : X_Destination;
 
-assign X_Stall_ALUout = D_fsm_busy | D_cache_miss ? M_ALUout : X_ALUout;
-assign X_Stall_WriteData = D_fsm_busy | D_cache_miss ? M_WriteData : X_ALU_In2;
+assign X_Stall_ALUout = D_fsm_busy | D_cache_miss  | stall_everything? M_ALUout : X_ALUout;
+assign X_Stall_WriteData = D_fsm_busy | D_cache_miss | stall_everything ? M_WriteData : X_ALU_In2;
 
-assign X_Stall_Nxt_Pc = D_fsm_busy | D_cache_miss ? M_Nxt_Pc : X_Nxt_Pc;
+assign X_Stall_Nxt_Pc = D_fsm_busy | D_cache_miss  | stall_everything? M_Nxt_Pc : X_Nxt_Pc;
 
 EX_MEMRegister EX_MEM( 
   .clk(clk),
@@ -272,7 +273,8 @@ assign M_Data_In = M_M_forward ? W_MemData : M_WriteData;
 // const assign write enable choosing flopped enable or the current value of M_MemWrite2 based on miss status
 // D Cache
 assign D_cache_miss = D_miss & ~D_fsm_busy & (M_MemRead | M_MemWrite2);
-cache_fill_FSM dcache_fsm(.clk(clk), .rst_n(rst_n), .miss_detected(D_miss & ~D_fsm_busy & (M_MemRead | M_MemWrite2)), .miss_address(M_ALUout), .memory_address(D_memory_address), .fsm_busy(D_fsm_busy), .write_data_array(D_write_data_array), .write_tag_array(D_write_tag_array), .memory_data_valid(D_memory_data_valid));
+assign stall_everything = (D_fsm_busy | D_miss) & I_fsm_busy;
+cache_fill_FSM dcache_fsm(.clk(clk), .rst_n(rst_n), .miss_detected(D_miss & ~D_fsm_busy & (M_MemRead | M_MemWrite2) & ~I_fsm_busy), .miss_address(M_ALUout), .memory_address(D_memory_address), .fsm_busy(D_fsm_busy), .write_data_array(D_write_data_array), .write_tag_array(D_write_tag_array), .memory_data_valid(D_memory_data_valid), .mem_en(D_mem_en));
 cache dcache(
 	.clk(clk), 
 	.rst(~rst_n), 

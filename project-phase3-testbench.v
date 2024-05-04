@@ -172,7 +172,7 @@ module cpu_ptb();
    // Is processor halted (1 bit signal)
    
 
-   assign Inst = DUT.instruction;
+   assign Inst = DUT.ID_Instruction;
    //Instruction fetched in the current cycle
    
    assign RegWrite = DUT.W_RegWrite;
@@ -199,13 +199,13 @@ module cpu_ptb();
    assign MemDataOut = DUT.M_MemData;
    // If there's a memory read in this cycle, this is the data being read out of memory (16 bits)
 
-   assign ICacheReq = DUT.I_write_tag_array;
+   assign ICacheReq = ~DUT.stall_everything;
    // Signal indicating a valid instruction read request to cache
    
    assign ICacheHit = ~DUT.I_miss;
    // Signal indicating a valid instruction cache hit
 
-   assign DCacheReq = DUT.D_write_tag_array;
+   assign DCacheReq = DUT.M_MemRead | DUT.D_write_enable;
    // Signal indicating a valid instruction data read or write request to cache
    
    assign DCacheHit = ~DUT.D_miss;
